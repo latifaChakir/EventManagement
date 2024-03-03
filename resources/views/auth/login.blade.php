@@ -17,8 +17,8 @@
       <link rel="stylesheet" href="/css/responsive.css" />
       <link rel="stylesheet" href="/css/perfect-scrollbar.css" />
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />  
-   
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+
    </head>
    <body class="inner_page login">
       <div class="full_container">
@@ -31,28 +31,40 @@
                      </div>
                   </div>
                   <div class="login_form">
-                     <form>
-                        <div class="field">
-                            <input type="text" name="name" placeholder="Name" />
-                         </div>
-                        <div class="field">
-                           <input type="email" name="email" placeholder="E-mail" />
-                        </div>
-                       
-                        <div class="field">
-                           <input type="password" name="password" placeholder="Password" />
+                    <form class="login-form">
+                        <div class="form-group">
+                          <label for="email" class="sr-only">Email address</label>
+                          <input type="email" name="email" id="email" placeholder="E-mail" class="form-control" required />
                         </div>
 
-                        <div class="field margin_0">
-                           <label class="label_field hidden">hidden label</label>
-                           <button class="main_bt">Sign Up</button>
+                        <div class="form-group">
+                          <label for="password" class="sr-only">Password</label>
+                          <input type="password" name="password" id="password" placeholder="Password" class="form-control" required />
                         </div>
-                        <div class="d-flex justify-content-center mt-3">
-                            <a href="/login" style="color:rgba(18, 32, 46, 0.8);">Already have an account? <strong>Sign In</strong></a>
-                         </div>
-                     </form>
-                     
-                  </div>
+
+                        <div class="text-end">
+                            <a href="forgot_password.html" style="color:rgba(18, 32, 46, 0.8);">Forgot Password?</a>
+                          </div>
+
+                        <div class="form-group">
+                          <button type="submit" class="btn btn-success btn-block mt-4 border">Sign In</button>
+                        </div>
+
+                          <div class="form-group">
+                            <a href="/auth/google">
+                              <button type="button" class="btn btn-white btn-block border">
+                                <img src="/images/logo/google.png" alt="Continue with Google" />
+                                Continue with Google
+                              </button>
+                            </a>
+                          </div>
+
+
+                        <div class="text-center">
+                          <a href="/register" style="color:rgba(18, 32, 46, 0.8);">Don't have an account? <strong>Sign Up</strong></a>
+                        </div>
+                      </form>
+                </div>
                </div>
             </div>
          </div>
@@ -72,5 +84,8 @@
       </script>
       <!-- custom js -->
       <script src="js/custom.js"></script>
+      <style>
+
+      </style>
    </body>
 </html>

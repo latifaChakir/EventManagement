@@ -19,16 +19,13 @@
       <link rel="stylesheet" href="/css/style.css" />
       <!-- responsive css -->
       <link rel="stylesheet" href="/css/responsive.css" />
-      <!-- color css -->
-      <!-- <link rel="stylesheet" href="css/colors.css" />
-      <link rel="stylesheet" href="css/bootstrap-select.css" /> -->
+
       <link rel="stylesheet" href="/css/perfect-scrollbar.css" />
-      <!-- <link rel="stylesheet" href="css/custom.css" /> -->
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />      <!--[if lt IE 9]>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-      <![endif]-->
+     
    </head>
    <body class="dashboard dashboard_1">
       <div class="full_container">
@@ -58,7 +55,7 @@
                      <li class="active">
                         <a href="/dashboard" ><i class="fa fa-dashboard yellow_color"></i> <span>Dashboard</span></a>
                      </li>
-                    
+
                      <li><a href="/tables"><i class="fa fa-table purple_color2"></i> <span>Tables</span></a></li>
                      <li>
                         <a href="/contact">
@@ -106,11 +103,11 @@
             </div>
          </div>
       </div>
-   
+
       <!-- custom js -->
         <script src="js/jquery.min.js"></script>
         <!-- owl carousel -->
-   
+
         <!-- nice scrollbar -->
         <script src="js/perfect-scrollbar.min.js"></script>
         <script>
@@ -118,7 +115,7 @@
         </script>
         <!-- custom js -->
         <script src="js/custom.js"></script>
-        <!-- calendar file css -->    
+        <!-- calendar file css -->
         <script src="js/semantic.min.js"></script>
    </body>
 </html>
