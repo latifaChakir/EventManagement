@@ -45,7 +45,7 @@
                         </div>
 
                         <div class="text-end">
-                            <a href="forgot_password.html" style="color:rgba(18, 32, 46, 0.8);">Forgot Password?</a>
+                            <a href="/forgetpassword" style="color:rgba(18, 32, 46, 0.8);">Forgot Password?</a>
                           </div>
 
                         <div class="form-group">

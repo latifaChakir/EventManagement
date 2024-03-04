@@ -45,5 +45,12 @@ Route::post('/register', [AuthController::class, 'create'])->name('auth.register
 Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
 Route::post('/login', [AuthController::class, 'authenticate'])->name('auth.login.post');
 Route::get('/logout', [AuthController::class, 'logout']);
+
+//PASSWORD RESETTING
+Route::get('/forgetpassword', [AuthController::class, 'forgetpassword']);
+Route::post('/resetpasswordPost', [AuthController::class, 'sendemail']);
+Route::post('/newpasswordPost', [AuthController::class, 'addpassword']);
+Route::get('/resetwithemail/{token}', [AuthController::class, 'reset'])->name('resetwithemail');
+////FONCTIONNALITIES
 Route::resource('categories', CategoryController::class)->middleware('admin');
 
