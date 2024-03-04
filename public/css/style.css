@@ -3437,3 +3437,7 @@ table.projects tr td:first-child {
     width: 20px; /* Or customize the icon size */
     height: 20px; /* Or customize the icon size */
   }
+  .buttons{
+    display: flex;
+    gap: 10px;
+   }

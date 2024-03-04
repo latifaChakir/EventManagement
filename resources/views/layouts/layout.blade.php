@@ -56,7 +56,7 @@
                         <a href="/dashboard" ><i class="fa fa-dashboard yellow_color"></i> <span>Dashboard</span></a>
                      </li>
 
-                     <li><a href="/tables"><i class="fa fa-table purple_color2"></i> <span>Tables</span></a></li>
+                     <li><a href="/categories"><i class="fa fa-table purple_color2"></i> <span>Categories</span></a></li>
                      <li>
                         <a href="/contact">
                         <i class="fa fa-paper-plane red_color"></i> <span>Contact</span></a>

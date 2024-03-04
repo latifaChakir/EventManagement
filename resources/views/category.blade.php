@@ -9,7 +9,7 @@
                      <div class="row column_title">
                         <div class="col-md-12">
                            <div class="page_title">
-                              <h2>Administration</h2>
+                              <h2>Tables</h2>
                            </div>
                         </div>
                      </div>
@@ -27,7 +27,7 @@
                            <div class="white_shd full margin_bottom_30">
                               <div class="full graph_head">
                                  <div class="heading1 margin_0">
-                                    <h2>Categories Tables</h2>
+                                    <h2>Responsive Tables</h2>
                                  </div>
                                  <div class="d-flex justify-content-end mb-3">
                                     <a href="#addModal" class="btn btn-secondary" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add category</span></a>
@@ -38,28 +38,33 @@
                                     <table class="table" id="myTable">
                                        <thead>
                                           <tr>
-                                             <th>Name</th>
-                                             <th>Created At</th>
-                                             <th>Action</th>
+                                             <th>#</th>
+                                             <th>Firstname</th>
+                                             <th>Lastname</th>
+                                             <th>Age</th>
+                                             <th>City</th>
+                                             <th>Country</th>
+                                             <th>Sex</th>
+                                             <th>Example</th>
+                                             <th>Example</th>
+                                             <th>Example</th>
+                                             <th>Example</th>
                                           </tr>
                                        </thead>
                                        <tbody>
-                                        @foreach ($categories as $category)
                                           <tr>
-                                             <td>{{$category->name}}</td>
-                                             <td>{{$category->created_at}}</td>
-                                             <td class="align-middle">
-                                                <div class="buttons">
-                                                <a class="btn btn-primary" href="{{route('categories.edit',$category->id)}}">Edit</a>
-                                                <form action="{{route('categories.destroy',$category->id)}}" method="post">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                                </form>
-                                            </div>
-                                              </td>
+                                             <td>1</td>
+                                             <td>Anna</td>
+                                             <td>Pitt</td>
+                                             <td>35</td>
+                                             <td>New York</td>
+                                             <td>USA</td>
+                                             <td>Female</td>
+                                             <td>Yes</td>
+                                             <td>Yes</td>
+                                             <td>Yes</td>
+                                             <td>Yes</td>
                                           </tr>
-                                          @endforeach
                                        </tbody>
                                     </table>
                                  </div>
