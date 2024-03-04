@@ -31,7 +31,9 @@
                      </div>
                   </div>
                   <div class="login_form">
-                    <form class="login-form">
+
+                    <form class="login-form" method="POST" action="{{ route('auth.login.post') }}">
+                        @csrf
                         <div class="form-group">
                           <label for="email" class="sr-only">Email address</label>
                           <input type="email" name="email" id="email" placeholder="E-mail" class="form-control" required />

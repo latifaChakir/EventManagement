@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use \Firebase\JWT\JWT;
+use Illuminate\Support\Facades\Redirect;
 
 class AuthController extends Controller
 {
@@ -33,6 +36,46 @@ class AuthController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
         return redirect('/login');
+    }
+
+
+    public function authenticate(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ], [
+            'email.required' => 'Le champ email est important',
+            'email.email' => 'Veuillez entrer une adresse email valide',
+            'password.required' => 'Le champ mot de passe est important',
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user || !Hash::check($request->password, $user->password)) {
+            return back()->with('error', 'Invalid email or password');
+        }
+
+        $payload = [
+            'iss' => $_SERVER['HTTP_HOST'],
+            'iat' => time(),
+            'id' => $user->id,
+        ];
+
+        $jwt = JWT::encode($payload, $_ENV['JWT_SECRET'], $_ENV['JWT_ALGO']);
+
+        $cookie = Cookie::make('jwt_token', $jwt, 1440);
+
+        if ($user->id_role == 1) {
+            return redirect('/categories')->withCookie($cookie);
+        } else {
+            return redirect('/home')->withCookie($cookie);
+        }
+    }
+
+    public function logout(Request $request){
+        $response = redirect('/home')->withCookie(Cookie::forget('jwt_token'));
+        return $response;
     }
 
 }
