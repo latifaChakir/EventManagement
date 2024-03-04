@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\GoogleAuthController;
 use Illuminate\Support\Facades\Route;
 
@@ -53,4 +54,7 @@ Route::post('/newpasswordPost', [AuthController::class, 'addpassword']);
 Route::get('/resetwithemail/{token}', [AuthController::class, 'reset'])->name('resetwithemail');
 ////FONCTIONNALITIES
 Route::resource('categories', CategoryController::class)->middleware('admin');
+
+Route::resource('events', EventController::class)->middleware('organisateur');
+
 

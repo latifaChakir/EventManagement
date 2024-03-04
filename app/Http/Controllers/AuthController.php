@@ -72,7 +72,7 @@ class AuthController extends Controller
         if ($user->id_role == 1) {
             return redirect('/categories')->withCookie($cookie);
         } else {
-            return redirect('/home')->withCookie($cookie);
+            return redirect('/events')->withCookie($cookie);
         }
     }
 
