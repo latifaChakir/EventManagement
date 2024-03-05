@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Event;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,8 @@ class EventController extends Controller
      */
     public function index()
     {
-        return view('organisateur.events');
+        $categories=Category::all();
+        return view('organisateur.events', compact('categories'));
     }
 
     /**
@@ -28,7 +30,30 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'place' => 'required',
+            'date' => 'required',
+            'number_places'=>'number_places',
+            'category_id' => 'required',
+            'image_path' => 'required|image|mimes:jpeg,png,jpg,svg,gif|max:2048',
+        ]);
+
+        $uploadDir = 'images/';
+        $uploadFileName = uniqid() . '.' . $request->file('image_path')->getClientOriginalExtension();
+        $request->file('image_path')->move($uploadDir, $uploadFileName);
+
+        $event = new Event();
+        $event->title = $request->title;
+        $event->description = $request->description;
+        $event->place = $request->place;
+        $event->date = $request->date;
+        $event->id_categorie = $request->category_id;
+        $event->image_path = $uploadFileName;
+        $event->save();
+
+        return redirect('/events');
     }
 
     /**

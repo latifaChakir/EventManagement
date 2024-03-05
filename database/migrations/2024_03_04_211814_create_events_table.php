@@ -16,10 +16,14 @@ return new class extends Migration
             $table->string('title');
             $table->string('description');
             $table->date('date');
+            $table->string('place');
             $table->integer('number_places');
             $table->string('image_path');
-            $table->boolean('is_published');
+            $table->boolean('is_published')->default(false);
+            $table->enum('type_reserved', ['manuel', 'automatic']);
             $table->unsignedBigInteger('id_categorie');
+            $table->unsignedBigInteger('id_user');
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->softDeletes();
             $table->foreign('id_categorie')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

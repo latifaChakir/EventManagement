@@ -30,7 +30,8 @@
                                     <h2>Users Tables</h2>
                                  </div>
                                  <div class="d-flex justify-content-end mb-3">
-                                    <a href="#addModal" class="btn btn-secondary" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add user</span></a>
+                                    <a href="#addModal" class="btn btn-secondary" data-toggle="modal"><i class="fa fa-plus"></i>
+                                        <span>Add user</span></a>
                                 </div>
                               </div>
                               <div class="table_section padding_infor_info">

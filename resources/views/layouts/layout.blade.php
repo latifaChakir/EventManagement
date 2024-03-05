@@ -52,19 +52,29 @@
                <div class="sidebar_blog_2">
                   <h4>General</h4>
                   <ul class="list-unstyled components">
-                     <li class="active">
-                        <a href="/dashboard" ><i class="fa fa-dashboard yellow_color"></i> <span>Dashboard</span></a>
-                     </li>
 
-                     <li><a href="/categories"><i class="fa fa-table purple_color2"></i> <span>Categories</span></a></li>
-                     <li><a href="/users"><i class="fa fa-users blue1_color"></i>
-                        <span>Users</span></a></li>
-                     <li>
-                        <a href="/contact">
-                        <i class="fa fa-paper-plane red_color"></i> <span>Contact</span></a>
-                     </li>
-                     <li><a href="/settings"><i class="fa fa-cog yellow_color"></i> <span>Settings</span></a></li>
-                  </ul>
+                    @if($isAdmin)
+                        <li class="active">
+                            <a href="/dashboard" ><i class="fa fa-dashboard yellow_color"></i> <span>Dashboard</span></a>
+                        </li>
+                        <li><a href="/categories"><i class="fa fa-table purple_color2"></i> <span>Categories</span></a></li>
+                        <li><a href="/users"><i class="fa fa-users blue1_color"></i><span>Users</span></a></li>
+                        <li>
+                            <a href="/contact">
+                            <i class="fa fa-paper-plane red_color"></i> <span>Contact</span></a>
+                        </li>
+                        <li><a href="/settings"><i class="fa fa-cog yellow_color"></i> <span>Settings</span></a></li>
+                    @endif
+                    @if($isOrganisater)
+                    <li class="active">
+                        <a href="/statistics" ><i class="fa fa-dashboard yellow_color"></i> <span>Dashboard</span></a>
+                    </li>
+                    <li><a href="/events"><i class="fa fa-calendar purple_color2"></i>
+                        <span>Events</span></a></li>
+                    <li><a href="/settings"><i class="fa fa-cog blue1_color"></i> <span>Settings</span></a></li>
+                    @endif
+                </ul>
+
                </div>
             </nav>
             <!-- end sidebar -->

@@ -22,7 +22,7 @@
                                     <h2>Events Tables</h2>
                                  </div>
                                  <div class="d-flex justify-content-end mb-3">
-                                    <a href="#addModal" class="btn btn-secondary" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add event</span></a>
+                                    <a href="#addModal" class="btn btn-secondary" data-toggle="modal"><i class="fa fa-plus"></i><span>Add event</span></a>
                                 </div>
                               </div>
                               <div class="table_section padding_infor_info">
@@ -72,6 +72,61 @@
                      </div>
                   </div>
                </div>
+
+               <div id="addModal" class="modal">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <form id="employeeForm" method="post" action="{{route('events.store')}}" enctype="multipart/form-data">
+                            @csrf
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label>Title</label>
+                                    <input type="text" class="form-control" name="title" placeholder="Title">
+                                </div>
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <input type="text" class="form-control" name="description">
+                                </div>
+                                <div class="form-group">
+                                    <label>Place</label>
+                                    <input type="number" class="form-control" name="place">
+                                </div>
+                                <div class="form-group">
+                                    <label>Date</label>
+                                    <input type="date" class="form-control" name="date">
+                                </div>
+                                <div class="form-group">
+                                    <label>Number Places</label>
+                                    <input type="number" class="form-control" name="number_places">
+                                </div>
+                                <div class="form-group">
+                                    <label>Category</label>
+                                    <select class="form-control" name="category_id" data-placeholder="choose a category">
+                                        @foreach($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Reservation type</label>
+                                    <select class="form-control" name="type_reserved" data-placeholder="choose a type">
+                                        <option value="manuel">manuel</option>
+                                        <option value="automatic">automatic</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Event Image </label>
+                                    <input type="file" class="form-control" name="image_path" accept="image/*">
+                                </div>
+
+                                <div class="modal-footer">
+                                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                    <input type="submit" class="btn btn-success" value="Add">
+                                </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
 
 
 @endsection

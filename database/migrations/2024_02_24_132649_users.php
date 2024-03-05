@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('google_id')->nullable();
             $table->unsignedBigInteger('id_role')->default(2);
             $table->foreign('id_role')->references('id')->on('roles')->onDelete('cascade')->onUpdate('cascade');
+            $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
         });
