@@ -57,6 +57,8 @@
                      </li>
 
                      <li><a href="/categories"><i class="fa fa-table purple_color2"></i> <span>Categories</span></a></li>
+                     <li><a href="/users"><i class="fa fa-users blue1_color"></i>
+                        <span>Users</span></a></li>
                      <li>
                         <a href="/contact">
                         <i class="fa fa-paper-plane red_color"></i> <span>Contact</span></a>

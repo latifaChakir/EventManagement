@@ -13,7 +13,7 @@
 
             </div>
             <div class="d-flex justify-content-end">
-                <button type="submit" class="btn btn-primary  mb-4 me-4 save ">Save Edit</button>
+                <button type="submit" class="btn btn-success  mb-4 me-4 save ">Save Edit</button>
                 <a href="/categories">
                     <div class="btn btn-danger  mb-4 mx-3 annuler">Annuler</div>
                 </a>

@@ -50,7 +50,7 @@
                                              <td>{{$category->created_at}}</td>
                                              <td class="align-middle">
                                                 <div class="buttons">
-                                                <a class="btn btn-primary" href="{{route('categories.edit',$category->id)}}">Edit</a>
+                                                <a class="btn btn-success" href="{{route('categories.edit',$category->id)}}">Edit</a>
                                                 <form action="{{route('categories.destroy',$category->id)}}" method="post">
                                                     @csrf
                                                     @method('DELETE')
