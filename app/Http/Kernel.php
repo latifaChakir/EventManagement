@@ -50,6 +50,9 @@ class Kernel extends HttpKernel
         'organisateur' => [
             \App\Http\Middleware\OrganisateurMiddleware::class,
         ],
+        'jwt.check' => [
+            \App\Http\Middleware\CheckJwtTokenMiddleware::class
+        ],
 
     ];
 

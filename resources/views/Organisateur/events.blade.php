@@ -30,34 +30,42 @@
                                     <table class="table" id="myTable">
                                        <thead>
                                           <tr>
-                                             <th>#</th>
-                                             <th>Firstname</th>
-                                             <th>Lastname</th>
-                                             <th>Age</th>
-                                             <th>City</th>
-                                             <th>Country</th>
-                                             <th>Sex</th>
-                                             <th>Example</th>
-                                             <th>Example</th>
-                                             <th>Example</th>
-                                             <th>Example</th>
+                                             <th>Image</th>
+                                             <th>Title</th>
+                                             <th>Description</th>
+                                             <th>Adress</th>
+                                             <th>Date</th>
+                                             <th>number of seats</th>
+                                             <th>Category Name</th>
+                                             <th>Type of reservation</th>
+                                             <th>Action</th>
                                           </tr>
                                        </thead>
                                        <tbody>
+                                        @foreach ($events as $event)
                                           <tr>
-                                             <td>1</td>
-                                             <td>Anna</td>
-                                             <td>Pitt</td>
-                                             <td>35</td>
-                                             <td>New York</td>
-                                             <td>USA</td>
-                                             <td>Female</td>
-                                             <td>Yes</td>
-                                             <td>Yes</td>
-                                             <td>Yes</td>
-                                             <td>Yes</td>
+                                             <td><img src="/images/{{ $event->image_path }}" width="50px" alt=""></td>
+                                             <td>{{ $event->title }}</td>
+                                             <td>{{ $event->description }}</td>
+                                             <td>{{ $event->place }}</td>
+                                             <td>{{ $event->date }}</td>
+                                             <td>{{ $event->number_places }}</td>
+                                             <td>{{ $event->category_name }}</td>
+                                             <td>{{ $event->type_reserved }}</td>
+                                             <td class="align-middle">
+                                                <div class="buttons">
+                                                <a class="btn btn-success" href="{{route('events.edit',$event->id)}}">Edit</a>
+                                                <form action="{{route('events.destroy',$event->id)}}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                </form>
+                                            </div>
+                                              </td>
+
                                           </tr>
                                        </tbody>
+                                       @endforeach
                                     </table>
                                  </div>
                               </div>
@@ -88,15 +96,15 @@
                                     <input type="text" class="form-control" name="description">
                                 </div>
                                 <div class="form-group">
-                                    <label>Place</label>
-                                    <input type="number" class="form-control" name="place">
+                                    <label>Adress</label>
+                                    <input type="text" class="form-control" name="place">
                                 </div>
                                 <div class="form-group">
                                     <label>Date</label>
                                     <input type="date" class="form-control" name="date">
                                 </div>
                                 <div class="form-group">
-                                    <label>Number Places</label>
+                                    <label>number of seats</label>
                                     <input type="number" class="form-control" name="number_places">
                                 </div>
                                 <div class="form-group">

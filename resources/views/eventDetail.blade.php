@@ -38,7 +38,7 @@
 <nav class="navbar main-nav border-less fixed-top navbar-expand-lg p-0">
   <div class="container-fluid p-0">
       <!-- logo -->
-      <a class="navbar-brand" href="index.html">
+      <a class="navbar-brand" href="/home">
         <img src="/images/logo/logo2.png" alt="logo">
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,7 +47,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav mx-auto">
         <li class="nav-item dropdown active dropdown-slide">
-          <a class="nav-link" href="#"  data-toggle="dropdown">Home
+          <a class="nav-link" href="/home"  data-toggle="dropdown">Home
             <span>/</span>
           </a>
           <!-- Dropdown list -->
@@ -56,7 +56,7 @@
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Speakers
+          <a class="nav-link" href="speakers.html">Speakers
             <span>/</span>
           </a>
         </li>
@@ -64,22 +64,22 @@
           <a class="nav-link" href="#" data-toggle="dropdown">Pages<span>/</span></a>
             <!-- Dropdown list -->
             <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">About Us</a>
+              <a class="dropdown-item" href="about-us.html">About Us</a>
             </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Schedule<span>/</span></a>
+          <a class="nav-link" href="schedule.html">Schedule<span>/</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Sponsors<span>/</span></a>
+          <a class="nav-link" href="sponsors.html">Sponsors<span>/</span></a>
         </li>
         <li class="nav-item dropdown dropdown-slide">
-          <a class="nav-link" href="/home"  data-toggle="dropdown">News
+          <a class="nav-link" href="#"  data-toggle="dropdown">News
             <span>/</span>
           </a>
           <!-- Dropdown list -->
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="/home">News </a>
+            <a class="dropdown-item" href="news.html">News without sidebar</a>
           </div>
         </li>
         <li class="nav-item">
@@ -107,11 +107,11 @@
 		<div class="row">
 			<div class="col-12 text-center">
 				<div class="title">
-					<h3>Our News</h3>
+					<h3>News Details</h3>
 				</div>
 				<ol class="breadcrumb p-0 m-0">
 				  <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-				  <li class="breadcrumb-item active">Our News</li>
+				  <li class="breadcrumb-item active">News Details</li>
 				</ol>
 			</div>
 		</div>
@@ -128,128 +128,156 @@
 <section class="news section">
 	<div class="container">
 		<div class="row mt-30">
-			<div class="col-lg-4 col-md-10 mx-auto">
-				<div class="sidebar">
-					<!-- Search Widget -->
-					<div class="widget search p-0">
-						<div class="input-group">
-						    <input type="text" class="form-control main m-0" id="expire" placeholder="Search...">
-						    <span class="input-group-addon"><i class="fa fa-search"></i></span>
-					    </div>
-					</div>
-					<!-- Category Widget -->
-					<div class="widget category">
-						<!-- Widget Header -->
-						<h5 class="widget-header">Categories</h5>
-						<ul class="category-list m-0 p-0">
-                            @foreach ($categories as $category)
-							<li><a href="">{{ $category->name }}<span class="float-right">(6)</span></a></li>
-                            @endforeach
-
-						</ul>
-					</div>
-
-
-					<!-- Latest post -->
-					<div class="widget latest-post">
-						<h5 class="widget-header">Latest Event</h5>
-						<!-- Post -->
-                        @foreach ($latestevents as $latestEvent)
-
-						<div class="media">
-							<img src="/images/{{ $latestEvent->image_path }}" class="img-fluid" alt="post-thumb" width="40%" height="40%">
-							<div class="media-body">
-								<h6><a href="">{{ $latestEvent->title }}</a></h6>
-								<p href="#"><span class="fa fa-calendar"></span>{{ $latestEvent->date }}</p>
-							</div>
-						</div>
-                        @endforeach
-					</div>
-					<!-- Popular Tag Widget -->
-					<div class="widget tags">
-						<!-- Widget Header -->
-						<h5 class="widget-header">Popular Tags</h5>
-						<ul class="list-inline">
-							<li class="list-inline-item"><a href="#">Culture</a></li>
-							<li class="list-inline-item"><a href="#">Social</a></li>
-							<li class="list-inline-item"><a href="#">News</a></li>
-							<li class="list-inline-item"><a href="#">Events</a></li>
-							<li class="list-inline-item"><a href="#">Sports</a></li>
-							<li class="list-inline-item"><a href="#">Music</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
 			<div class="col-lg-8 col-md-10 mx-auto">
 				<div class="block">
-					<div class="row">
-                        @foreach ($events as $event)
-						<div class="col-md-6 col-sm-8 col-10 m-auto">
-							<div class="blog-post">
-								<div class="post-thumb">
-									<a href="/eventDetail/{{ $event->id }}">
-										<img src="/images/{{ $event->image_path }}" alt="post-image" class="img-fluid">
-									</a>
+					<!-- Article -->
+					<article class="blog-post single">
+						<div class="post-thumb">
+							<img src="/images/{{ $event->image_path }}" alt="post-image" class="img-fluid" width="730px" height="464px">
+						</div>
+						<div class="post-content">
+                            @php
+                            $date = $event->date;
+                            $formattedDate = date("j", strtotime($date));
+                            $formattedMonth = substr(date("F", strtotime($date)), 0, 3);
+                           @endphp
+							<div class="date">
+								<h4>{{ $formattedDate }}<span>{{ $formattedMonth }}</span></h4>
+							</div>
+							<div class="post-title">
+								<h3>{{ $event->title }}</h3>
+							</div>
+							<div class="post-meta">
+								<ul class="list-inline">
+									<li class="list-inline-item">
+										<i class="fa fa-user-o"></i>
+										<a href="#">Admin</a>
+									</li>
+									<li class="list-inline-item">
+										<i class="fa fa-heart-o"></i>
+										<a href="#">350</a>
+									</li>
+									<li class="list-inline-item">
+										<i class="fa fa-comments-o"></i>
+										<a href="#">30</a>
+									</li>
+								</ul>
+							</div>
+							<div class="post-details">
+								<div class="quotes">
+									<blockquote>{{ $event->description }}</blockquote>
 								</div>
-                                @php
-                                $date = $event->date;
-                                $formattedDate = date("j", strtotime($date));
-                                $formattedMonth = substr(date("F", strtotime($date)), 0, 3);
-                               @endphp
 
-								<div class="post-content">
-									<div class="date">
-                                        {{-- <h4>20<span>May</span></h4> --}}
-                                        <h4>{{ $formattedDate }}<span>{{ $formattedMonth }}</span></h4>
-									</div>
-									<div class="post-title">
-										<h2><a href="/eventDetail/{{ $event->id }}">{{ $event->title }}</a></h2>
-									</div>
-									<div class="post-meta">
+								<div class="share-block">
+									<div class="tag">
+										<p>
+											Organize In:
+										</p>
 										<ul class="list-inline">
 											<li class="list-inline-item">
-												<i class="fa fa-user-o"></i>
-												<a href="#">Admin</a>
-											</li>
-											<li class="list-inline-item">
-												<i class="fa fa-heart-o"></i>
-												<a href="#">350</a>
-											</li>
-											<li class="list-inline-item">
-												<i class="fa fa-comments-o"></i>
-												<a href="#">30</a>
+												<a href="#">{{ $event->place }}</a>
 											</li>
 										</ul>
 									</div>
+
+									<div class="share">
+										<p>
+											Share:
+										</p>
+										<ul class="social-links-share list-inline">
+							              <li class="list-inline-item">
+							                <a href="#"><i class="fa fa-facebook"></i></a>
+							              </li>
+							              <li class="list-inline-item">
+							                <a href="#"><i class="fa fa-twitter"></i></a>
+							              </li>
+							              <li class="list-inline-item">
+							                <a href="#"><i class="fa fa-instagram"></i></a>
+							              </li>
+							              <li class="list-inline-item">
+							                <a href="#"><i class="fa fa-rss"></i></a>
+							              </li>
+							              <li class="list-inline-item">
+							                <a href="#"><i class="fa fa-vimeo"></i></a>
+							              </li>
+							            </ul>
+									</div>
+								</div>
+							</div>
+                            <div class="d-flex">
+                                <p class="mr-2 ">
+                                    By:
+                                </p>
+                                <a href="#"><strong>{{ $event->user_name }}</strong></a>
+                            </div>
+
+						</div>
+					</article>
+					<!-- Comment Section -->
+					<div class="comments">
+						<h5>Comments (3)</h5>
+						<!-- Comment -->
+						<div class="media comment">
+							<img src="/assets/images/speakers/speaker-thumb-four.jpg" alt="image">
+							<div class="media-body">
+								<h6>Jessica Brown</h6>
+								<ul class="list-inline">
+									<li class="list-inline-item"><span class="fa fa-calendar"></span>Mar 20, 2016</li>
+									<li class="list-inline-item"><a href="#">Reply</a></li>
+								</ul>
+								<p>
+									Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudant tota rem ape riamipsa eaque  quae nisi ut aliquip commodo consequat.
+								</p>
+								<!-- Nested Comment -->
+								<div class="media comment">
+									<img src="/assets/images/speakers/speaker-thumb-three.jpg" alt="image">
+									<div class="media-body">
+										<h6>Jonathan Doe</h6>
+										<ul class="list-inline">
+											<li class="list-inline-item"><span class="fa fa-calendar"></span>Mar 20, 2016</li>
+										</ul>
+										<p>
+											Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudant tota rem ape riamipsa eaque  quae nisi
+										</p>
+									</div>
 								</div>
 							</div>
 						</div>
-                        @endforeach
-						<div class="col-12">
-							<!-- Pagination -->
-							<nav>
-							  <ul class="pagination">
-							  	<li class="page-item">
-							      <a class="page-link" href="#" aria-label="prev">
-							        <span aria-hidden="true"><i class="fa fa-angle-left"></i></span>
-							        <span class="sr-only">prev</span>
-							      </a>
-							    </li>
-							    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-							    <li class="page-item"><a class="page-link" href="#">2</a></li>
-							    <li class="page-item"><a class="page-link" href="#">3</a></li>
-							    <li class="page-item">
-							      <a class="page-link" href="#" aria-label="Next">
-							        <span aria-hidden="true"><i class="fa fa-angle-right"></i></span>
-							        <span class="sr-only">Next</span>
-							      </a>
-							    </li>
-							  </ul>
-							</nav>
+						<!-- Comment -->
+						<div class="media comment">
+							<img src="/assets/images/speakers/speaker-thumb-two.jpg" alt="image">
+							<div class="media-body">
+								<h6>Adam Smith</h6>
+								<ul class="list-inline">
+									<li class="list-inline-item"><span class="fa fa-calendar"></span>Mar 20, 2016</li>
+									<li class="list-inline-item"><a href="#">Reply</a></li>
+								</ul>
+								<p>
+									Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudant tota rem ape riamipsa eaque  quae nisi ut aliquip commodo consequat.
+								</p>
+							</div>
 						</div>
+					</div>
+					<div class="comment-form">
+						<h5>Leave A Comment</h5>
+						<form action="#" class="row">
+							<div class="col-12">
+								<textarea class="form-control main" name="comment" id="comment" rows="10" placeholder="Your Review"></textarea>
+							</div>
+							<div class="col-md-6">
+								<input type="text" class="form-control main" name="text" id="name" placeholder="Your Name">
+							</div>
+							<div class="col-md-6">
+								<input type="email" class="form-control main" name="email" id="email" placeholder="Your Email">
+							</div>
+							<div class="col-12">
+								<button class="btn btn-main-md" type="submit">Submit Now</button>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
+
 		</div>
 	</div>
 </section>

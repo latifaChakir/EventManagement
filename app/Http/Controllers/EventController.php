@@ -5,16 +5,24 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EventController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $decodedUser = $request->decoded_user;
+        $userId = $decodedUser->id;
+
+        $events = Event::join('categories', 'events.id_categorie', '=', 'categories.id')
+        ->where('events.id_user', $userId)
+        ->select('events.*', 'categories.name as category_name')
+        ->get();
         $categories=Category::all();
-        return view('organisateur.events', compact('categories'));
+        return view('organisateur.events', compact('categories','events'));
     }
 
     /**
@@ -30,12 +38,16 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
+        $decodedUser = $request->decoded_user;
+        $userId = $decodedUser->id;
+
         $request->validate([
             'title' => 'required',
             'description' => 'required',
             'place' => 'required',
             'date' => 'required',
-            'number_places'=>'number_places',
+            'number_places'=>'required',
+            'type_reserved'=>'required',
             'category_id' => 'required',
             'image_path' => 'required|image|mimes:jpeg,png,jpg,svg,gif|max:2048',
         ]);
@@ -49,7 +61,10 @@ class EventController extends Controller
         $event->description = $request->description;
         $event->place = $request->place;
         $event->date = $request->date;
+        $event->type_reserved = $request->type_reserved;
+        $event->number_places = $request->number_places;
         $event->id_categorie = $request->category_id;
+        $event->id_user = $userId;
         $event->image_path = $uploadFileName;
         $event->save();
 
@@ -67,24 +82,59 @@ class EventController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Event $event)
+    public function edit(string $id)
     {
-        //
+        $event=Event::find($id);
+        $categories=Category::all();
+        return view('organisateur.editevent', compact('event','categories'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Event $event)
+    public function update(Request $request, string $id)
     {
-        //
+        $decodedUser = $request->decoded_user;
+        $userId = $decodedUser->id;
+
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'place' => 'required',
+            'date' => 'required',
+            'number_places'=>'required',
+            'type_reserved'=>'required',
+            'category_id' => 'required',
+            'image_path' => 'required|image|mimes:jpeg,png,jpg,svg,gif|max:2048',
+        ]);
+
+        $uploadDir = 'images/';
+        $uploadFileName = uniqid() . '.' . $request->file('image_path')->getClientOriginalExtension();
+        $request->file('image_path')->move($uploadDir, $uploadFileName);
+
+        $event = Event::find($id);
+        $event->title = $request->title;
+        $event->description = $request->description;
+        $event->place = $request->place;
+        $event->date = $request->date;
+        $event->type_reserved = $request->type_reserved;
+        $event->number_places = $request->number_places;
+        $event->id_categorie = $request->category_id;
+        $event->id_user = $userId;
+        $event->image_path = $uploadFileName;
+        $event->update();
+        return redirect('/events');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Event $event)
+
+    public function destroy(string $id)
     {
-        //
+        $event = Event::find($id);
+        $event->delete();
+        return redirect('/events')->with('success', 'Event deleted successfully');
     }
-}
+    }
+
