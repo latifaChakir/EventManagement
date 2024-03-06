@@ -37,6 +37,8 @@ class TicketController extends Controller
         if ($event->type_reserved === 'automatic') {
             $reserve->status = 'approved';
             $reserve->save();
+            $event->number_places = $event->number_places - 1;
+            $event->save();
             session(['userName' => $user->name]);
             return redirect('/ticket/' . $validatedData['id_event']);
         }
@@ -70,6 +72,7 @@ class TicketController extends Controller
 
         session()->forget('userName');
 
-        return $dompdf->stream();
+        $fileName = 'ticket.pdf';
+        return $dompdf->stream($fileName);
     }
 }
