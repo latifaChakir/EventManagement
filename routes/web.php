@@ -62,8 +62,11 @@ Route::middleware('jwt.check')->group(function () {
 });
 
 Route::get('/home', [HomeController::class, 'index']);
+Route::get('/eventDetail/{id}', [HomeController::class, 'afficherDet']);
 Route::get('/ticket/{id}', [TicketController::class, 'generate']);
 Route::post('/addTicket', [TicketController::class, 'addTicket']);
+Route::get('/pdf/{idEvent}', [TicketController::class,'pdf'])->name('generate.pdf');
+
 
 
 

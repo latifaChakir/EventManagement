@@ -110,7 +110,7 @@
 					<h3>News Details</h3>
 				</div>
 				<ol class="breadcrumb p-0 m-0">
-				  <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+				  <li class="breadcrumb-item"><a href="/home">Home</a></li>
 				  <li class="breadcrumb-item active">News Details</li>
 				</ol>
 			</div>
@@ -151,7 +151,7 @@
 								<ul class="list-inline">
 									<li class="list-inline-item">
 										<i class="fa fa-ticket"></i>
-										<a href="#">Admin</a>
+										<a href="/ticket/{{ $event->id }}">Ticket</a>
 									</li>
 									<li class="list-inline-item">
 										<i class="fa fa-heart-o"></i>

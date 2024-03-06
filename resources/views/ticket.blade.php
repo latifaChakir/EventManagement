@@ -38,8 +38,8 @@
 <nav class="navbar main-nav border-less fixed-top navbar-expand-lg p-0">
   <div class="container-fluid p-0">
       <!-- logo -->
-      <a class="navbar-brand" href="index.html">
-        <img src="/assets/images/logo.png" alt="logo">
+      <a class="navbar-brand" href="/home">
+        <img src="/images/logo/logo2.png" alt="logo">
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="fa fa-bars"></span>
@@ -47,12 +47,12 @@
       <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav mx-auto">
         <li class="nav-item dropdown active dropdown-slide">
-          <a class="nav-link" href="#"  data-toggle="dropdown">Home
+          <a class="nav-link" href="/home"  data-toggle="dropdown">Home
             <span>/</span>
           </a>
           <!-- Dropdown list -->
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="index.html">Homepage</a>
+            <a class="dropdown-item" href="/home">Homepage</a>
             <a class="dropdown-item" href="homepage-two.html">Homepage 2</a>
           </div>
         </li>
@@ -121,7 +121,7 @@
 					<h3>Pricing Table</h3>
 				</div>
 				<ol class="breadcrumb p-0 m-0">
-				  <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+				  <li class="breadcrumb-item"><a href="/home">Home</a></li>
 				  <li class="breadcrumb-item active">Pricing Table</li>
 				</ol>
 			</div>
@@ -206,9 +206,17 @@
                                 </div>
 
                                 <div class="pricing-footer text-center">
-                                    <input type="submit" class="btn btn-main-md" value="Generate a ticket">
+                                    <input type="submit" class="btn btn-main-md" value="Reserve a ticket">
                                 </div>
                         </form>
+
+                        @if($event->type_reserved == 'automatic')
+                        <div class="pricing-footer text-center">
+                            <a href="{{ route('generate.pdf', ['idEvent' => $event->id]) }}" class="btn btn-main-md">Generate a ticket</a>
+                        </div>
+                    @endif
+
+
 					</div>
 
 				</div>
