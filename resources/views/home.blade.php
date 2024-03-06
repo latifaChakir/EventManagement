@@ -208,8 +208,8 @@
 									<div class="post-meta">
 										<ul class="list-inline">
 											<li class="list-inline-item">
-												<i class="fa fa-user-o"></i>
-												<a href="#">Admin</a>
+												<i class="fa fa-ticket"></i>
+												<a href="/ticket/{{ $event->id }}">Ticket</a>
 											</li>
 											<li class="list-inline-item">
 												<i class="fa fa-heart-o"></i>

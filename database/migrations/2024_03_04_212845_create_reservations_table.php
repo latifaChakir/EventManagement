@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreign('id_event')->references('id')->on('events')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('id_user');
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->date('date');
+            $table->date('date')->default(now());
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->timestamps();
         });

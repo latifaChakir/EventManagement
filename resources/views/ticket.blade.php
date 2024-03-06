@@ -38,8 +38,8 @@
 <nav class="navbar main-nav border-less fixed-top navbar-expand-lg p-0">
   <div class="container-fluid p-0">
       <!-- logo -->
-      <a class="navbar-brand" href="/home">
-        <img src="/images/logo/logo2.png" alt="logo">
+      <a class="navbar-brand" href="index.html">
+        <img src="/assets/images/logo.png" alt="logo">
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="fa fa-bars"></span>
@@ -47,12 +47,13 @@
       <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav mx-auto">
         <li class="nav-item dropdown active dropdown-slide">
-          <a class="nav-link" href="/home"  data-toggle="dropdown">Home
+          <a class="nav-link" href="#"  data-toggle="dropdown">Home
             <span>/</span>
           </a>
           <!-- Dropdown list -->
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="/home">Homepage</a>
+            <a class="dropdown-item" href="index.html">Homepage</a>
+            <a class="dropdown-item" href="homepage-two.html">Homepage 2</a>
           </div>
         </li>
         <li class="nav-item">
@@ -65,6 +66,13 @@
             <!-- Dropdown list -->
             <div class="dropdown-menu">
               <a class="dropdown-item" href="about-us.html">About Us</a>
+              <a class="dropdown-item" href="single-speaker.html">Single Speaker</a>
+              <a class="dropdown-item" href="gallery.html">Gallery</a>
+              <a class="dropdown-item" href="gallery-two.html">Gallery-02</a>
+              <a class="dropdown-item" href="testimonial.html">Testimonial</a>
+              <a class="dropdown-item" href="pricing.html">Pricing</a>
+              <a class="dropdown-item" href="FAQ.html">FAQ</a>
+              <a class="dropdown-item" href="404.html">404</a>
             </div>
         </li>
         <li class="nav-item">
@@ -80,10 +88,13 @@
           <!-- Dropdown list -->
           <div class="dropdown-menu">
             <a class="dropdown-item" href="news.html">News without sidebar</a>
+            <a class="dropdown-item" href="news-right-sidebar.html">News with right sidebar</a>
+            <a class="dropdown-item" href="news-left-sidebar.html">News with left sidebar</a>
+            <a class="dropdown-item" href="news-single.html">News Single</a>
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/login">Login</a>
+          <a class="nav-link" href="contact.html">Contact</a>
         </li>
       </ul>
       <a href="#" class="ticket">
@@ -107,11 +118,11 @@
 		<div class="row">
 			<div class="col-12 text-center">
 				<div class="title">
-					<h3>News Details</h3>
+					<h3>Pricing Table</h3>
 				</div>
 				<ol class="breadcrumb p-0 m-0">
 				  <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-				  <li class="breadcrumb-item active">News Details</li>
+				  <li class="breadcrumb-item active">Pricing Table</li>
 				</ol>
 			</div>
 		</div>
@@ -121,160 +132,85 @@
 <!--====  End of Page Title  ====-->
 
 
-<!--================================
-=            News Posts            =
-=================================-->
 
-<section class="news section">
+<!--===================================
+=            Pricing Table            =
+====================================-->
+
+<section class="section pricing">
 	<div class="container">
-		<div class="row mt-30">
-			<div class="col-lg-8 col-md-10 mx-auto">
-				<div class="block">
-					<!-- Article -->
-					<article class="blog-post single">
-						<div class="post-thumb">
-							<img src="/images/{{ $event->image_path }}" alt="post-image" class="img-fluid" width="730px" height="464px">
+		<div class="row">
+			<div class="col-12">
+				<div class="section-title">
+					<h3>Get <span class="alternate">ticket</span></h3>
+					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusm tempor incididunt ut labore</p>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-4 col-md-6">
+				<!-- Pricing Item -->
+				<div class="pricing-item">
+					<div class="pricing-heading">
+						<!-- Title -->
+						<div class="title">
+							<h6>Starter</h6>
 						</div>
-						<div class="post-content">
-                            @php
-                            $date = $event->date;
-                            $formattedDate = date("j", strtotime($date));
-                            $formattedMonth = substr(date("F", strtotime($date)), 0, 3);
-                           @endphp
-							<div class="date">
-								<h4>{{ $formattedDate }}<span>{{ $formattedMonth }}</span></h4>
-							</div>
-							<div class="post-title">
-								<h3>{{ $event->title }}</h3>
-							</div>
-							<div class="post-meta">
-								<ul class="list-inline">
-									<li class="list-inline-item">
-										<i class="fa fa-ticket"></i>
-										<a href="#">Admin</a>
-									</li>
-									<li class="list-inline-item">
-										<i class="fa fa-heart-o"></i>
-										<a href="#">350</a>
-									</li>
-									<li class="list-inline-item">
-										<i class="fa fa-comments-o"></i>
-										<a href="#">30</a>
-									</li>
-								</ul>
-							</div>
-							<div class="post-details">
-								<div class="quotes">
-									<blockquote>{{ $event->description }}</blockquote>
-								</div>
-
-								<div class="share-block">
-									<div class="tag">
-										<p>
-											Organize In:
-										</p>
-										<ul class="list-inline">
-											<li class="list-inline-item">
-												<a href="#">{{ $event->place }}</a>
-											</li>
-										</ul>
-									</div>
-
-									<div class="share">
-										<p>
-											Share:
-										</p>
-										<ul class="social-links-share list-inline">
-							              <li class="list-inline-item">
-							                <a href="#"><i class="fa fa-facebook"></i></a>
-							              </li>
-							              <li class="list-inline-item">
-							                <a href="#"><i class="fa fa-twitter"></i></a>
-							              </li>
-							              <li class="list-inline-item">
-							                <a href="#"><i class="fa fa-instagram"></i></a>
-							              </li>
-							              <li class="list-inline-item">
-							                <a href="#"><i class="fa fa-rss"></i></a>
-							              </li>
-							              <li class="list-inline-item">
-							                <a href="#"><i class="fa fa-vimeo"></i></a>
-							              </li>
-							            </ul>
-									</div>
-								</div>
-							</div>
-                            <div class="d-flex">
-                                <p class="mr-2 ">
-                                    By:
-                                </p>
-                                <a href="#"><strong>{{ $event->user_name }}</strong></a>
-                            </div>
-
-						</div>
-					</article>
-					<!-- Comment Section -->
-					<div class="comments">
-						<h5>Comments (3)</h5>
-						<!-- Comment -->
-						<div class="media comment">
-							<img src="/assets/images/speakers/speaker-thumb-four.jpg" alt="image">
-							<div class="media-body">
-								<h6>Jessica Brown</h6>
-								<ul class="list-inline">
-									<li class="list-inline-item"><span class="fa fa-calendar"></span>Mar 20, 2016</li>
-									<li class="list-inline-item"><a href="#">Reply</a></li>
-								</ul>
-								<p>
-									Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudant tota rem ape riamipsa eaque  quae nisi ut aliquip commodo consequat.
-								</p>
-								<!-- Nested Comment -->
-								<div class="media comment">
-									<img src="/assets/images/speakers/speaker-thumb-three.jpg" alt="image">
-									<div class="media-body">
-										<h6>Jonathan Doe</h6>
-										<ul class="list-inline">
-											<li class="list-inline-item"><span class="fa fa-calendar"></span>Mar 20, 2016</li>
-										</ul>
-										<p>
-											Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudant tota rem ape riamipsa eaque  quae nisi
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- Comment -->
-						<div class="media comment">
-							<img src="/assets/images/speakers/speaker-thumb-two.jpg" alt="image">
-							<div class="media-body">
-								<h6>Adam Smith</h6>
-								<ul class="list-inline">
-									<li class="list-inline-item"><span class="fa fa-calendar"></span>Mar 20, 2016</li>
-									<li class="list-inline-item"><a href="#">Reply</a></li>
-								</ul>
-								<p>
-									Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudant tota rem ape riamipsa eaque  quae nisi ut aliquip commodo consequat.
-								</p>
-							</div>
+						<!-- Price -->
+						<div class="price">
+							<h2>39.00<span>$</span></h2>
+							<p>/Person</p>
 						</div>
 					</div>
-					<div class="comment-form">
-						<h5>Leave A Comment</h5>
-						<form action="#" class="row">
-							<div class="col-12">
-								<textarea class="form-control main" name="comment" id="comment" rows="10" placeholder="Your Review"></textarea>
-							</div>
-							<div class="col-md-6">
-								<input type="text" class="form-control main" name="text" id="name" placeholder="Your Name">
-							</div>
-							<div class="col-md-6">
-								<input type="email" class="form-control main" name="email" id="email" placeholder="Your Email">
-							</div>
-							<div class="col-12">
-								<button class="btn btn-main-md" type="submit">Submit Now</button>
-							</div>
-						</form>
+					<div class="pricing-body">
+						<!-- Feature List -->
+						<ul class="feature-list m-0 p-0">
+							<li><p><span class="fa fa-check-circle available"></span>1 Comfortable Seats</p></li>
+							<li><p><span class="fa fa-check-circle available"></span>Free Lunch and Coffee</p></li>
+							<li><p><span class="fa fa-times-circle unavailable"></span>Certificate</p></li>
+							<li><p><span class="fa fa-times-circle unavailable"></span>Easy Access</p></li>
+						</ul>
 					</div>
+					<div class="pricing-footer text-center">
+						<a href="#" class="btn btn-transparent-md">Buy a ticket</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-8 col-md-6">
+				<!-- Pricing Item -->
+				<div class="pricing-item featured">
+					<div class="pricing-heading">
+						<!-- Title -->
+						<div class="title">
+							<h6>Standard</h6>
+						</div>
+						<!-- Price -->
+						<div class="price">
+							<h2>Book a seat<span></span></h2>
+							<p>/Person</p>
+						</div>
+					</div>
+					<div class="pricing-body">
+						<!-- Feature List -->
+                        <form id="employeeForm" method="post" action="/addTicket">
+                            @csrf
+                            <div class="modal-body">
+                                <input type="text" hidden name="id_event" value="{{ $event->id }}">
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    <input type="text" class="form-control" name="name">
+                                </div>
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="text" class="form-control" name="email">
+                                </div>
+
+                                <div class="pricing-footer text-center">
+                                    <input type="submit" class="btn btn-main-md" value="Generate a ticket">
+                                </div>
+                        </form>
+					</div>
+
 				</div>
 			</div>
 
@@ -282,7 +218,8 @@
 	</div>
 </section>
 
-<!--====  End of News Posts  ====-->
+<!--====  End of Pricing Table  ====-->
+
 
 <!--==============================================
 =            Call to Action Subscribe            =
