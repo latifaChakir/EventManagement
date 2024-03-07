@@ -124,4 +124,8 @@ class AuthController extends Controller
         return redirect('/login')->with('status', 'Your password has been reset successfully. Please log in with your new password.');
     }
 
+    public function profile(){
+        return view('profile');
+    }
+
 }

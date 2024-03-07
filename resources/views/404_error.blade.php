@@ -13,11 +13,11 @@
       <meta name="description" content="">
       <meta name="author" content="">
       <!-- site icon -->
-      <link rel="icon" href="images/fevicon.png" type="image/png" />
+      <link rel="icon" href="/images/fevicon.png" type="image/png" />
       <!-- bootstrap css -->
-      <link rel="stylesheet" href="css/bootstrap.min.css" />
+      <link rel="stylesheet" href="/css/bootstrap.min.css" />
       <!-- site css -->
-      <link rel="stylesheet" href="style.css" />
+      <link rel="stylesheet" href="/css/style.css" />
       <!-- responsive css -->
       <link rel="stylesheet" href="css/responsive.css" />
       <!-- color css -->
@@ -38,17 +38,22 @@
    <body class="inner_page error_404">
       <div class="full_container">
          <div class="container">
+            @if(session()->has('error'))
+            <div class="alert alert-danger">
+                {{ session()->get('error') }}
+            </div>
+        @endif
             <div class="center verticle_center full_height">
                <div class="error_page">
                   <div class="center">
                      <div class="error_icon">
-                        <img class="img-responsive" src="images/layout_img/error.png" alt="#">
+                        <img class="img-responsive" src="/images/layout_img/error.png" alt="#">
                      </div>
                   </div>
                   <br>
-                  <h3>PAGE NOT FOUND !</h3>
+                  <h3>Access Denied !</h3>
                   <P>YOU SEEM TO BE TRYING TO FIND HIS WAY HOME</P>
-                  <div class="center"><a class="main_bt" href="index.html">Go To Home Page</a></div>
+                  <div class="center"><a class="main_bt" href="/home">Go To Home Page</a></div>
                </div>
             </div>
          </div>

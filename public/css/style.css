@@ -3400,7 +3400,7 @@ table.projects tr td:first-child {
 }
 
 .error_404 {
-    background: url('images/layout_img/pattern_h.png');
+    background: url('/images/layout_img/pattern_h.png');
     background-size: cover;
     background-color: #fff;
 }

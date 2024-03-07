@@ -65,7 +65,7 @@
                         </li>
                         <li><a href="/validatEvent"><i class="fa fa-check-circle green_color"></i>
                             <span>Events</span></a></li>
-                        <li><a href="/settings"><i class="fa fa-cog yellow_color"></i> <span>Settings</span></a></li>
+                        <li><a href="/profileAdmin"><i class="fa fa-cog yellow_color"></i> <span>Profile</span></a></li>
                     @endif
                     @if($isOrganisater)
                         <li class="active">
@@ -75,7 +75,7 @@
                             <span>Events</span></a></li>
                         <li><a href="/reservation"><i class="fa fa-check-circle red_color"></i>
                                 <span>Rervation</span></a></li>
-                        <li><a href="/settings"><i class="fa fa-cog blue1_color"></i> <span>Settings</span></a></li>
+                        <li><a href="/profile"><i class="fa fa-cog blue1_color"></i> <span>Profile</span></a></li>
                     @endif
                 </ul>
 

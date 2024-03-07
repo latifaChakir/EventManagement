@@ -48,7 +48,7 @@
                                         @foreach ($categories as $category)
                                           <tr>
                                              <td>{{$category->name}}</td>
-                                             <td>{{$category->created_at}}</td>
+                                             <td>{{ date('Y-m-d', strtotime($category->created_at)) }}</td>
                                              <td class="align-middle">
                                                 <div class="buttons">
                                                 <a class="btn btn-success" href="{{route('categories.edit',$category->id)}}">Edit</a>

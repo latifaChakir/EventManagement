@@ -25,16 +25,10 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/tables', function () {
-    return view('tables');
+Route::get('/error', function () {
+    return view('404_error');
 });
 
-Route::get('/profile', function () {
-    return view('profile');
-});
-Route::get('/settings', function () {
-    return view('settings');
-});
 
 
 
@@ -69,9 +63,12 @@ Route::middleware('jwt.check')->group(function () {
     Route::get('/approved/{id}', [EventController::class, 'approved'])->middleware('organisateur');
     Route::get('/rejected/{id}', [EventController::class, 'rejected'])->middleware('organisateur');
     Route::get('statistics', [EventController::class, 'afficheStatistics'])->middleware('organisateur');
+    Route::get('/profile', [AuthController::class, 'profile'])->middleware('organisateur');
+    Route::get('/profileAdmin', [AuthController::class, 'profile'])->middleware('admin');
 
 
 });
+
 
 Route::get('/home', [HomeController::class, 'index']);
 Route::get('/search', [HomeController::class, 'search']);
@@ -80,6 +77,7 @@ Route::get('/eventDetail/{id}', [HomeController::class, 'afficherDet']);
 Route::get('/ticket/{id}', [TicketController::class, 'generate']);
 Route::post('/addTicket', [TicketController::class, 'addTicket']);
 Route::get('/pdf/{idEvent}', [TicketController::class,'pdf'])->name('generate.pdf');
+
 
 
 

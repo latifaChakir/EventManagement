@@ -21,25 +21,26 @@ class AdminRoleMiddleware
         $token = $request->cookie('jwt_token');
 
         if (!$token) {
-            return response()->json(['message' => 'Missing token'], 401);
+            return redirect('/error')->with('error','Missing token');
         }
 
         try {
             $decodedToken =JWT::decode($token, new Key($_ENV['JWT_SECRET'], 'HS256'));
         } catch (\Exception $e) {
-            return response()->json(['message' => 'Invalid token'], 401);
+            return redirect('/error')->with('error','Invalid token');
         }
         $user = User::find($decodedToken->id);
         // dd($user);
 
         if (!$user) {
-            return response()->json(['message' => 'User not found'], 401);
+            return redirect('/error')->with('error','User not found');
         }
 
         if ($user->id_role != 1) {
-            return response()->json(['message' => 'You are not admin'], 401);
+            return redirect('/error')->with('error','you are not allowed to access this page');
         }
         $userName=$user->name;
+        $email=$user->email;
         $isAdmin=$user->id_role == 1;
         $isOrganisater=$user->id_role == 2;
         // dd($isAdmin);
@@ -47,6 +48,7 @@ class AdminRoleMiddleware
         // dd($isAdmin);
         \View::share('isAdmin', $isAdmin);
         \View::share('userName', $userName);
+        \View::share('email', $email);
         return $next($request);
     }
 }

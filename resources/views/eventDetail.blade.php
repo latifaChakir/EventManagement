@@ -205,11 +205,15 @@
 								</div>
 							</div>
                             <div class="d-flex">
-                                <p class="mr-2 ">
+                                <p class="mr-2 mb-2">
                                     By:
                                 </p>
                                 <a href="#"><strong>{{ $event->user_name }}</strong></a>
                             </div>
+                            <ul class="list-inline">
+                                <li class="list-inline-item"><span class="fa fa-calendar"></span>{{ $event->date }}</li>
+                                <li class="list-inline-item"><a href="#"></a></li>
+                            </ul>
 
 						</div>
 					</article>
