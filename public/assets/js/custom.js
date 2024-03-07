@@ -49,7 +49,7 @@
           $('html, body').animate({ scrollTop: 0 }, 'slow');
           return false;
         });
-        
+
         // -----------------------------
         // Magnific Popup
         // -----------------------------
@@ -80,3 +80,57 @@
     });
 
 })(jQuery);
+
+
+
+const search = document.getElementById('search');
+const searchResults = document.getElementById('searchResults');
+fetchSearchResults();
+
+search.addEventListener("keyup", function() {
+  fetchSearchResults();
+});
+
+function fetchSearchResults() {
+  fetch(`/search?search=${search.value}`)
+    .then(res => res.text())
+    .then(data => {
+      searchResults.innerHTML = data;
+    })
+    .catch(error => console.error('Erreur lors de la recherche:', error));
+}
+
+////////filtrage function
+document.querySelectorAll('input[type="radio"][name="category"]').forEach(function(radio) {
+    radio.addEventListener('change', function() {
+        var checkedCategory = this.value;
+        fetch(`/filter?category=${checkedCategory}`)
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('searchResults').innerHTML = data;
+            })
+            .catch(error => console.error('Erreur lors du filtrage des events:', error));
+    });
+});
+
+
+///////////////
+var currentPage = 1;
+    $(document).ready(function() {
+        $('#prev-page, #next-page').click(function(e) {
+            e.preventDefault();
+            var page = $(this).attr('id') === 'prev-page' ? currentPage - 1 : currentPage + 1;
+            loadEvents(page);
+        });
+    });
+
+    function loadEvents(page) {
+        $.ajax({
+            url: '/search?page=' + page,
+            type: 'GET',
+            success: function(data) {
+                $('#searchResults').html(data);
+                currentPage = page; 
+            }
+        });
+    }

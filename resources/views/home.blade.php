@@ -133,7 +133,7 @@
 					<!-- Search Widget -->
 					<div class="widget search p-0">
 						<div class="input-group">
-						    <input type="text" class="form-control main m-0" id="expire" placeholder="Search...">
+						    <input type="text" class="form-control main m-0" id="search"  placeholder="Search...">
 						    <span class="input-group-addon"><i class="fa fa-search"></i></span>
 					    </div>
 					</div>
@@ -143,7 +143,7 @@
 						<h5 class="widget-header">Categories</h5>
 						<ul class="category-list m-0 p-0">
                             @foreach ($categories as $category)
-							<li><a href="">{{ $category->name }}<span class="float-right">(6)</span></a></li>
+                            <li><a href="">{{ $category->name }}<span class="float-right"> <input type="radio" name="category" value="{{ $category->name }}"></span></a></li>
                             @endforeach
 
 						</ul>
@@ -182,83 +182,34 @@
 			</div>
 			<div class="col-lg-8 col-md-10 mx-auto">
 				<div class="block">
-					<div class="row">
-                        @foreach ($events as $event)
-						<div class="col-md-6 col-sm-8 col-10 m-auto">
-							<div class="blog-post">
-								<div class="post-thumb">
-									<a href="/eventDetail/{{ $event->id }}">
-										<img src="/images/{{ $event->image_path }}" alt="post-image" class="img-fluid">
-									</a>
-								</div>
-                                @php
-                                $date = $event->date;
-                                $formattedDate = date("j", strtotime($date));
-                                $formattedMonth = substr(date("F", strtotime($date)), 0, 3);
-                               @endphp
-
-								<div class="post-content">
-									<div class="date">
-                                        {{-- <h4>20<span>May</span></h4> --}}
-                                        <h4>{{ $formattedDate }}<span>{{ $formattedMonth }}</span></h4>
-									</div>
-									<div class="post-title">
-										<h2><a href="/eventDetail/{{ $event->id }}">{{ $event->title }}</a></h2>
-									</div>
-									<div class="post-meta">
-										<ul class="list-inline">
-											<li class="list-inline-item">
-												<i class="fa fa-ticket"></i>
-												<a href="/ticket/{{ $event->id }}">Ticket</a>
-											</li>
-											<li class="list-inline-item">
-												<i class="fa fa-heart-o"></i>
-												<a href="#">350</a>
-											</li>
-											<li class="list-inline-item">
-												<i class="fa fa-comments-o"></i>
-												<a href="#">30</a>
-											</li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
-                        @endforeach
-						<div class="col-12">
-							<!-- Pagination -->
-							<nav>
-							  <ul class="pagination">
-							  	<li class="page-item">
-							      <a class="page-link" href="#" aria-label="prev">
-							        <span aria-hidden="true"><i class="fa fa-angle-left"></i></span>
-							        <span class="sr-only">prev</span>
-							      </a>
-							    </li>
-							    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-							    <li class="page-item"><a class="page-link" href="#">2</a></li>
-							    <li class="page-item"><a class="page-link" href="#">3</a></li>
-							    <li class="page-item">
-							      <a class="page-link" href="#" aria-label="Next">
-							        <span aria-hidden="true"><i class="fa fa-angle-right"></i></span>
-							        <span class="sr-only">Next</span>
-							      </a>
-							    </li>
-							  </ul>
-							</nav>
-						</div>
+					<div class="row" id="searchResults">
+                      {{-- Gonna pull All events --}}
 					</div>
+
+                    <nav>
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="prev" id="prev-page">
+                                    <span aria-hidden="true"><i class="fa fa-angle-left"></i></span>
+                                    <span class="sr-only">prev</span>
+                                </a>
+                            </li>
+
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next" id="next-page">
+                                    <span aria-hidden="true"><i class="fa fa-angle-right"></i></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
 
-<!--====  End of News Posts  ====-->
-
-<!--==============================================
-=            Call to Action Subscribe            =
-===============================================-->
 
 <section class="cta-subscribe bg-subscribe overlay-dark">
 	<div class="container">
@@ -382,7 +333,13 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
   <script type="text/javascript" src="/assets/plugins/google-map/gmap.js"></script>
   <!-- Custom Script -->
-  <script src="js/custom.js"></script>
+  <script src="/assets/js/custom.js"></script>
+
+  <style>
+    input[type="radio"]:checked {
+        accent-color: #ea680b;
+    }
+  </style>
 </body>
 
 </html>

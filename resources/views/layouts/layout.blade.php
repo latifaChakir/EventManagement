@@ -19,12 +19,12 @@
       <link rel="stylesheet" href="/css/style.css" />
       <!-- responsive css -->
       <link rel="stylesheet" href="/css/responsive.css" />
-
       <link rel="stylesheet" href="/css/perfect-scrollbar.css" />
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
 
    </head>
    <body class="dashboard dashboard_1">
@@ -43,7 +43,7 @@
                      <div class="user_profle_side">
                         <div class="user_img"><img class="img-responsive" src="/images/layout_img/user_img.jpg" alt="#" /></div>
                         <div class="user_info">
-                           <h6>John David</h6>
+                           <h6>{{ $userName }}</h6>
                            <p><span class="online_animation"></span> Online</p>
                         </div>
                      </div>
@@ -63,15 +63,19 @@
                             <a href="/contact">
                             <i class="fa fa-paper-plane red_color"></i> <span>Contact</span></a>
                         </li>
+                        <li><a href="/validatEvent"><i class="fa fa-check-circle green_color"></i>
+                            <span>Events</span></a></li>
                         <li><a href="/settings"><i class="fa fa-cog yellow_color"></i> <span>Settings</span></a></li>
                     @endif
                     @if($isOrganisater)
-                    <li class="active">
-                        <a href="/statistics" ><i class="fa fa-dashboard yellow_color"></i> <span>Dashboard</span></a>
-                    </li>
-                    <li><a href="/events"><i class="fa fa-calendar purple_color2"></i>
-                        <span>Events</span></a></li>
-                    <li><a href="/settings"><i class="fa fa-cog blue1_color"></i> <span>Settings</span></a></li>
+                        <li class="active">
+                            <a href="/statistics" ><i class="fa fa-dashboard yellow_color"></i> <span>Dashboard</span></a>
+                        </li>
+                        <li><a href="/events"><i class="fa fa-calendar purple_color2"></i>
+                            <span>Events</span></a></li>
+                        <li><a href="/reservation"><i class="fa fa-check-circle red_color"></i>
+                                <span>Rervation</span></a></li>
+                        <li><a href="/settings"><i class="fa fa-cog blue1_color"></i> <span>Settings</span></a></li>
                     @endif
                 </ul>
 
@@ -97,7 +101,7 @@
                               </ul>
                               <ul class="user_profile_dd">
                                  <li>
-                                    <a class="dropdown-toggle" data-toggle="dropdown"><img class="img-responsive rounded-circle" src="/images/layout_img/user_img.jpg" alt="#" /><span class="name_user">John David</span></a>
+                                    <a class="dropdown-toggle" data-toggle="dropdown"><img class="img-responsive rounded-circle" src="/images/layout_img/user_img.jpg" alt="#" /><span class="name_user">{{ $userName }}</span></a>
                                     <div class="dropdown-menu">
                                        <a class="dropdown-item" href="profile.html">My Profile</a>
                                        <a class="dropdown-item" href="settings.html">Settings</a>
@@ -117,6 +121,7 @@
       </div>
 
       <script src="js/jquery.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
       <script src="js/popper.min.js"></script>
       <script src="js/bootstrap.min.js"></script>
       <!-- wow animation -->
@@ -125,7 +130,10 @@
       <script src="js/bootstrap-select.js"></script>
       <!-- owl carousel -->
       <script src="js/owl.carousel.js"></script>
-
+      <!-- chart js -->
+      <script src="js/Chart.min.js"></script>
+      <script src="js/Chart.bundle.min.js"></script>
+      <script src="js/utils.js"></script>
       <script src="js/analyser.js"></script>
       <!-- nice scrollbar -->
       <script src="js/perfect-scrollbar.min.js"></script>

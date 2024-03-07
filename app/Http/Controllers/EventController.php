@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ApprovedMail;
 use App\Models\Category;
 use App\Models\Event;
+use App\Models\Reservation;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+
 
 class EventController extends Controller
 {
@@ -16,13 +21,14 @@ class EventController extends Controller
     {
         $decodedUser = $request->decoded_user;
         $userId = $decodedUser->id;
+        $userName= $decodedUser->name;
 
         $events = Event::join('categories', 'events.id_categorie', '=', 'categories.id')
         ->where('events.id_user', $userId)
         ->select('events.*', 'categories.name as category_name')
         ->get();
         $categories=Category::all();
-        return view('organisateur.events', compact('categories','events'));
+        return view('organisateur.events', compact('categories','events','userName'));
     }
 
     /**
@@ -135,6 +141,64 @@ class EventController extends Controller
         $event = Event::find($id);
         $event->delete();
         return redirect('/events')->with('success', 'Event deleted successfully');
+    }
+
+    public function accepteEvents(Request $request){
+        $decodedUser = $request->decoded_user;
+        $userId = $decodedUser->id;
+        $reservations = DB::table('reservations')
+        ->join('events', 'reservations.id_event', '=', 'events.id')
+        ->join('users', 'reservations.id_user', '=', 'users.id')
+        ->where('events.id_user', '=', $userId)
+        ->where('reservations.status', 'LIKE', 'pending')
+        ->select('reservations.*', 'events.image_path as image', 'events.title as event_title', 'users.name as user_name','users.email as user_email')
+        ->get();
+        return view('Organisateur.acceptedReservation',compact('reservations'));
+
+    }
+
+    public function approved($eventId){
+        $reservation = Reservation::find($eventId);
+        $reservation->status = 'approved';
+        $reservation->save();
+        /////FIND DETAILS
+        $evenid=$reservation->id_event;
+        $event=Event::find($evenid);
+        $eventTitle=$event->title;
+       $reserveUser=$reservation->id_user;
+       $user = User::find($reserveUser);
+       $userEmail = $user->email;
+       $this->sendApprovedEmail($userEmail,$eventTitle);
+
+        return redirect('/reservation');
+
+    }
+
+    private function sendApprovedEmail($userEmail,$eventTitle)
+    {
+        $subject = 'Reservation Approved';
+        $body = 'Your reservation In' .$eventTitle.' has been approved.';
+
+        Mail::to($userEmail)
+            ->send(new ApprovedMail($subject, $body));
+    }
+
+    public function rejected($reserveId){
+        $reservation = Reservation::find($reserveId);
+        $reservation->status = 'rejected';
+        $reservation->save();
+        return redirect('/reservation');
+
+    }
+
+    public function afficheStatistics(Request $request){
+        $decodedUser = $request->decoded_user;
+        $userId = $decodedUser->id;
+        $myevents = Event::where('id_user', $userId)->count();
+        $users = Reservation::join('events', 'reservations.id_event', '=', 'events.id')
+                    ->where('events.id_user', $userId)
+                    ->count();
+        return view('Organisateur/dashboard',compact('myevents','users'));
     }
     }
 

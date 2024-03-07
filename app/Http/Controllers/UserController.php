@@ -90,10 +90,17 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
-        $user = User::find($id);
         $user->delete();
-        return redirect('/users');
+        return redirect()->back()->with('success', 'Utilisateur supprimé avec succès');
+    }
+
+    public function contact(){
+        $users = User::withTrashed()
+        ->whereNotNull('deleted_at')
+        ->get();
+        return view('Admin.contact', compact('users'));
+
     }
 }

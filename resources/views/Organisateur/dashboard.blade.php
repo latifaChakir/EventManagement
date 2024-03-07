@@ -16,13 +16,13 @@
                            <div class="full counter_section margin_bottom_30">
                               <div class="couter_icon">
                                  <div>
-                                    <i class="fa fa-user yellow_color"></i>
+                                    <i class="fa fa-users yellow_color"></i>
                                  </div>
                               </div>
                               <div class="counter_no">
                                  <div>
-                                    <p class="total_no">2500</p>
-                                    <p class="head_couter">Welcome</p>
+                                    <p class="total_no">{{ $users }}</p>
+                                    <p class="head_couter">Total Users</p>
                                  </div>
                               </div>
                            </div>
@@ -36,8 +36,8 @@
                               </div>
                               <div class="counter_no">
                                  <div>
-                                    <p class="total_no">123.50</p>
-                                    <p class="head_couter">Average Time</p>
+                                    <p class="total_no">{{ $myevents }}</p>
+                                    <p class="head_couter">My Events</p>
                                  </div>
                               </div>
                            </div>

@@ -39,12 +39,14 @@ class OrganisateurMiddleware
         if ($user->id_role != 2) {
             return response()->json(['message' => 'You are not an organisateur'], 401);
         }
+        $userName=$user->name;
 
         $isOrganisater=$user->id_role == 2;
         $isAdmin=$user->id_role == 1;
         // dd($isAdmin);
         \View::share('isOrganisater', $isOrganisater);
         \View::share('isAdmin', $isAdmin);
+        \View::share('userName', $userName);
         return $next($request);
     }
 }

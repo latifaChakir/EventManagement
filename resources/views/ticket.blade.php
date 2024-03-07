@@ -53,7 +53,7 @@
           <!-- Dropdown list -->
           <div class="dropdown-menu">
             <a class="dropdown-item" href="/home">Homepage</a>
-            <a class="dropdown-item" href="homepage-two.html">Homepage 2</a>
+            <a class="dropdown-item" href="/home">Homepage 2</a>
           </div>
         </li>
         <li class="nav-item">
@@ -66,13 +66,6 @@
             <!-- Dropdown list -->
             <div class="dropdown-menu">
               <a class="dropdown-item" href="about-us.html">About Us</a>
-              <a class="dropdown-item" href="single-speaker.html">Single Speaker</a>
-              <a class="dropdown-item" href="gallery.html">Gallery</a>
-              <a class="dropdown-item" href="gallery-two.html">Gallery-02</a>
-              <a class="dropdown-item" href="testimonial.html">Testimonial</a>
-              <a class="dropdown-item" href="pricing.html">Pricing</a>
-              <a class="dropdown-item" href="FAQ.html">FAQ</a>
-              <a class="dropdown-item" href="404.html">404</a>
             </div>
         </li>
         <li class="nav-item">
@@ -87,10 +80,8 @@
           </a>
           <!-- Dropdown list -->
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="news.html">News without sidebar</a>
-            <a class="dropdown-item" href="news-right-sidebar.html">News with right sidebar</a>
-            <a class="dropdown-item" href="news-left-sidebar.html">News with left sidebar</a>
-            <a class="dropdown-item" href="news-single.html">News Single</a>
+            <a class="dropdown-item" href="/home">News</a>
+
           </div>
         </li>
         <li class="nav-item">
@@ -138,6 +129,11 @@
 ====================================-->
 
 <section class="section pricing">
+    @if ($message = Session::get('status'))
+    <div class="alert alert-success" role="alert">
+    {{$message}}
+    </div>
+   @endif
 	<div class="container">
 		<div class="row">
 			<div class="col-12">

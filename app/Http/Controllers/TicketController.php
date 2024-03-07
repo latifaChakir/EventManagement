@@ -46,7 +46,9 @@ class TicketController extends Controller
         else{
             $reserve->status = 'pending';
             $reserve->save();
-            return redirect('/home');
+            $event->number_places = $event->number_places - 1;
+            $event->save();
+            return redirect('/ticket/' . $validatedData['id_event'])->with('status', 'Thank you for waiting for the organizer is approval. Please check your email for notification of your request is acceptance.');
         }
 
     }

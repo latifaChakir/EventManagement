@@ -46,7 +46,7 @@
                                           <tr>
                                              <td><img src="/images/{{ $event->image_path }}" width="50px" alt=""></td>
                                              <td>{{ $event->title }}</td>
-                                             <td>{{ $event->description }}</td>
+                                             <td> {!! Str::limit($event->description, 30, '...') !!}</td>
                                              <td>{{ $event->place }}</td>
                                              <td>{{ $event->date }}</td>
                                              <td>{{ $event->number_places }}</td>

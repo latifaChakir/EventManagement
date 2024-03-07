@@ -12,6 +12,26 @@
                         </div>
                      </div>
                      <div class="row column1">
+                        <div id="users-data" data-users="{{ $users }}" hidden></div>
+                        <div id="orgnizers-data" data-orgnizers="{{ $orgnizers }}" hidden></div>
+                        <div id="acceptedEvents-data" data-acceptedEvents="{{ $acceptedEvents }}" hidden></div>
+                        <div id="refusedEvents-data" data-refusedEvents="{{ $refusedEvents }}" hidden></div>
+
+                        <div class="col-md-6 col-lg-3">
+                           <div class="full counter_section margin_bottom_30">
+                              <div class="couter_icon">
+                                 <div>
+                                    <i class="fa fa-users blue1_color"></i>
+                                 </div>
+                              </div>
+                              <div class="counter_no">
+                                 <div>
+                                    <p class="total_no">{{ $users }}</p>
+                                    <p class="head_couter">Users</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
                         <div class="col-md-6 col-lg-3">
                            <div class="full counter_section margin_bottom_30">
                               <div class="couter_icon">
@@ -21,8 +41,8 @@
                               </div>
                               <div class="counter_no">
                                  <div>
-                                    <p class="total_no">2500</p>
-                                    <p class="head_couter">Welcome</p>
+                                    <p class="total_no">{{ $orgnizers }}</p>
+                                    <p class="head_couter">Organizers</p>
                                  </div>
                               </div>
                            </div>
@@ -31,13 +51,13 @@
                            <div class="full counter_section margin_bottom_30">
                               <div class="couter_icon">
                                  <div>
-                                    <i class="fa fa-clock-o blue1_color"></i>
+                                    <i class="fa fa-check-circle green_color"></i>
                                  </div>
                               </div>
                               <div class="counter_no">
                                  <div>
-                                    <p class="total_no">123.50</p>
-                                    <p class="head_couter">Average Time</p>
+                                    <p class="total_no">{{ $acceptedEvents }}</p>
+                                    <p class="head_couter">Accepted Events</p>
                                  </div>
                               </div>
                            </div>
@@ -46,28 +66,13 @@
                            <div class="full counter_section margin_bottom_30">
                               <div class="couter_icon">
                                  <div>
-                                    <i class="fa fa-cloud-download green_color"></i>
+                                    <i class="fa fa-times red_color"></i>
                                  </div>
                               </div>
                               <div class="counter_no">
                                  <div>
-                                    <p class="total_no">1,805</p>
-                                    <p class="head_couter">Collections</p>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                           <div class="full counter_section margin_bottom_30">
-                              <div class="couter_icon">
-                                 <div>
-                                    <i class="fa fa-comments-o red_color"></i>
-                                 </div>
-                              </div>
-                              <div class="counter_no">
-                                 <div>
-                                    <p class="total_no">54</p>
-                                    <p class="head_couter">Comments</p>
+                                    <p class="total_no">{{ $refusedEvents }}</p>
+                                    <p class="head_couter">Rejected Events</p>
                                  </div>
                               </div>
                            </div>
@@ -164,9 +169,9 @@
                                  <div class="row">
                                     <div class="col-md-12">
                                        <div class="content">
-                                          <div class="area_chart">
-                                             <canvas height="120" id="canvas"></canvas>
-                                          </div>
+                                        <div class="line-chart" id="line-chart">
+                                            <canvas></canvas>
+                                        </div>
                                        </div>
                                     </div>
                                  </div>
@@ -267,3 +272,4 @@
                   </div>
                </div>
 @endsection
+

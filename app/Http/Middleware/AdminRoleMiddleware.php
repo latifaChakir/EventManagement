@@ -39,13 +39,14 @@ class AdminRoleMiddleware
         if ($user->id_role != 1) {
             return response()->json(['message' => 'You are not admin'], 401);
         }
-
+        $userName=$user->name;
         $isAdmin=$user->id_role == 1;
         $isOrganisater=$user->id_role == 2;
         // dd($isAdmin);
         \View::share('isOrganisater', $isOrganisater);
         // dd($isAdmin);
         \View::share('isAdmin', $isAdmin);
+        \View::share('userName', $userName);
         return $next($request);
     }
 }
