@@ -29,7 +29,7 @@ class HomeController extends Controller
     $searchTerm = $request->input('search');
     $events = Event::where('is_published', 1)
            ->where('title', 'like', "%{$searchTerm}%")
-           ->paginate(4); 
+           ->paginate(4);
     if ($request->ajax()) {
         return view('event_list', compact('events'))->render();
     }

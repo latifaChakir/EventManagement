@@ -167,9 +167,9 @@
 							<li><p><span class="fa fa-times-circle unavailable"></span>Easy Access</p></li>
 						</ul>
 					</div>
-					<div class="pricing-footer text-center">
+					{{-- <div class="pricing-footer text-center">
 						<a href="/checkout/{{ $event->id }}" class="btn btn-transparent-md">Reserve</a>
-					</div>
+					</div> --}}
 				</div>
 			</div>
 			<div class="col-lg-8 col-md-6">
@@ -188,26 +188,12 @@
 					</div>
 					<div class="pricing-body">
 						<!-- Feature List -->
-                        <form id="employeeForm" method="post" action="/checkout/{{ $event->id }}">
-                            @csrf
-                            <div class="modal-body">
-                                <input type="text" hidden name="id_event" value="{{ $event->id }}">
-                                <div class="form-group">
-                                    <label>Name</label>
-                                    <input type="text" class="form-control" name="name">
-                                </div>
-                                <div class="form-group">
-                                    <label>Email</label>
-                                    <input type="text" class="form-control" name="email">
-                                </div>
-
+                        <div class="section-title">
+                            <p>Click the button below to pay for your ticket.</p>
+                        </div>
                                 <div class="pricing-footer text-center">
-                                    <input type="submit" class="btn btn-main-md" value="Reserve a ticket">
+                                    <a href="/checkout/{{ $event->id }}">reserve</a>
                                 </div>
-                        </form>
-
-                       
-
 
 					</div>
 

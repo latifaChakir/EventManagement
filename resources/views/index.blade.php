@@ -55,7 +55,7 @@
                   <P>THANK YOU! YAOUR PAYEMENT IS COMPLETE</P>
                   @if($event->type_reserved == 'automatic')
                         <div class="pricing-footer text-center">
-                            <a href="{{ route('generate.pdf', ['idEvent' => $event->id,'idUser'=>$user->id]) }}" class="main_bt">Generate a ticket</a>
+                            <a href="{{ route('generate.pdf', ['idEvent' => $event->id]) }}" class="main_bt">Generate a ticket</a>
                         </div>
                    @else
                    <p>Thank you for waiting for the organizer is approval. Please check your email for notification of your request is acceptance</p>

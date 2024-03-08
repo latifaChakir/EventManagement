@@ -21,7 +21,7 @@ class OrganisateurMiddleware
         $token = $request->cookie('jwt_token');
 
         if (!$token) {
-            return redirect('/error')->with('error','Missing token');
+            return redirect('/error')->with('error','Missing login');
         }
 
         try {

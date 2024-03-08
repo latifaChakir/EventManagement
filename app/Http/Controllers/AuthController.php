@@ -36,7 +36,7 @@ class AuthController extends Controller
         $user=new User();
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->id_role = 2;
+        $user->id_role = 3;
         $user->password = Hash::make($request->password);
         $user->save();
         return redirect('/login');
@@ -72,8 +72,10 @@ class AuthController extends Controller
 
         if ($user->id_role == 1) {
             return redirect('/categories')->withCookie($cookie);
-        } else {
+        } else if($user->id_role == 2) {
             return redirect('/events')->withCookie($cookie);
+        }else{
+            return redirect('/home')->withCookie($cookie);
         }
     }
 

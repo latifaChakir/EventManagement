@@ -15,17 +15,8 @@ class StripeController extends Controller
 {
     public function checkout(Request $request)
     {
-
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-        ]);
-
-        $user = new User();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->save();
-        $userId=$user->id;
+        $decodedUser = $request->decoded_user;
+        $userId = $decodedUser->id;
 
         $name = Event::find($request->id)->title;
         $event=Event::find($request->id);
@@ -48,7 +39,7 @@ class StripeController extends Controller
                 ]
             ],
             'mode' => 'payment',
-            'success_url' => route('success', [$event, $userId]),
+            'success_url' => route('success',$event),
             'cancel_url' => 'http://127.0.0.1:8000/error',
 
             'metadata' => [
@@ -115,11 +106,9 @@ class StripeController extends Controller
 
         return response()->json(['status' => 'success']);
     }
-    public function success($eventId,$userId)
+    public function success($eventId)
     {
-        
         $event=Event::find($eventId);
-        $user=User::find($userId);
-        return view('index',compact('event','user'));
+        return view('index',compact('event'));
     }
 }

@@ -23,6 +23,7 @@
             </div>
             <div class="post-meta">
                 <ul class="list-inline">
+                    
                     <li class="list-inline-item">
                         <i class="fa fa-ticket"></i>
                         @if ($event->number_places > 0)

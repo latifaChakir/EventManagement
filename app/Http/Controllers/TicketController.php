@@ -17,9 +17,11 @@ class TicketController extends Controller
         return view('ticket',compact('event'));
     }
 
-    public function pdf($idEvent,$idUser)
+    public function pdf(Request $request, $idEvent)
     {
-        $user=User::findOrFail($idUser);
+        $decodedUser = $request->decoded_user;
+        $userId = $decodedUser->id;
+        $user=User::find($userId);
         $event = Event::findOrFail($idEvent);
 
         $htmlContent = View::make('pdf_content', [

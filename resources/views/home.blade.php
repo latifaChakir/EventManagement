@@ -83,7 +83,18 @@
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/login">Login</a>
+            @php
+            $isLoggedIn = false;
+            if (Cookie::has('jwt_token')) {
+              $isLoggedIn = true;
+            }
+            @endphp
+
+            @if ($isLoggedIn)
+              <a class="nav-link" href="/logout">Logout</a>
+            @else
+              <a class="nav-link" href="/login">Login</a>
+            @endif
         </li>
       </ul>
       <a href="#" class="ticket">

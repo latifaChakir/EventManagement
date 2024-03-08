@@ -20,19 +20,19 @@ class CheckJwtTokenMiddleware
     { $token = $request->cookie('jwt_token');
 
         if (!$token) {
-            return response()->json(['message' => 'Missing token'], 401);
+            return redirect('/error')->with('error','Missing login');
         }
 
         try {
             $decodedToken =JWT::decode($token, new Key($_ENV['JWT_SECRET'], 'HS256'));
         } catch (\Exception $e) {
-            return response()->json(['message' => 'Invalid token'], 401);
+            return redirect('/error')->with('error','Invalid ');
         }
 
         $user = User::find($decodedToken->id);
 
         if (!$user) {
-            return response()->json(['message' => 'User not found'], 401);
+            return redirect('/error')->with('error','User not found');
         }
 
         $request->merge(['decoded_user' => $user]);

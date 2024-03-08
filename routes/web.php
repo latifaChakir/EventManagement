@@ -55,9 +55,6 @@ Route::get('Refused/{id}', [ValidateEventController::class, 'refusedEvent'])->mi
 Route::get('Accepted/{id}', [ValidateEventController::class, 'AcceptedEvent'])->middleware('admin');
 Route::get('dashboard', [ValidateEventController::class, 'afficheStatistics'])->middleware('admin');
 
-
-
-
 Route::middleware('jwt.check')->group(function () {
     Route::resource('events', EventController::class)->middleware('organisateur');
     Route::get('reservation', [EventController::class, 'accepteEvents'])->middleware('organisateur');
@@ -70,15 +67,13 @@ Route::middleware('jwt.check')->group(function () {
 
 });
 
-
 Route::get('/home', [HomeController::class, 'index']);
 Route::get('/search', [HomeController::class, 'search']);
 Route::get('/filter', [HomeController::class, 'filter']);
 Route::get('/eventDetail/{id}', [HomeController::class, 'afficherDet']);
-Route::get('/ticket/{id}', [TicketController::class, 'generate']);
-Route::get('/pdf/{idEvent}/{idUser}', [TicketController::class,'pdf'])->name('generate.pdf');
+Route::get('/ticket/{id}', [TicketController::class, 'generate'])->middleware('jwt.check');
+Route::get('/pdf/{idEvent}', [TicketController::class,'pdf'])->name('generate.pdf')->middleware('jwt.check');
 
-
-Route::post('/checkout/{id}', [StripeController::class , 'checkout']);
-Route::get('/success/{event}/{idUser}', [StripeController::class , 'success'])->name('success');
+Route::get('/checkout/{id}', [StripeController::class , 'checkout'])->middleware('jwt.check');
+Route::get('/success/{event}', [StripeController::class , 'success'])->name('success');
 
