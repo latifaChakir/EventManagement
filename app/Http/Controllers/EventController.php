@@ -53,6 +53,7 @@ class EventController extends Controller
             'place' => 'required',
             'date' => 'required',
             'number_places'=>'required',
+            'prix'=>'required',
             'type_reserved'=>'required',
             'category_id' => 'required',
             'image_path' => 'required|image|mimes:jpeg,png,jpg,svg,gif|max:2048',
@@ -67,6 +68,7 @@ class EventController extends Controller
         $event->description = $request->description;
         $event->place = $request->place;
         $event->date = $request->date;
+        $event->prix = $request->prix;
         $event->type_reserved = $request->type_reserved;
         $event->number_places = $request->number_places;
         $event->id_categorie = $request->category_id;
@@ -109,6 +111,7 @@ class EventController extends Controller
             'place' => 'required',
             'date' => 'required',
             'number_places'=>'required',
+            'prix'=>'required',
             'type_reserved'=>'required',
             'category_id' => 'required',
             'image_path' => 'required|image|mimes:jpeg,png,jpg,svg,gif|max:2048',
@@ -125,6 +128,7 @@ class EventController extends Controller
         $event->date = $request->date;
         $event->type_reserved = $request->type_reserved;
         $event->number_places = $request->number_places;
+        $event->prix = $request->prix;
         $event->id_categorie = $request->category_id;
         $event->id_user = $userId;
         $event->image_path = $uploadFileName;
@@ -165,10 +169,10 @@ class EventController extends Controller
         $evenid=$reservation->id_event;
         $event=Event::find($evenid);
         $eventTitle=$event->title;
-       $reserveUser=$reservation->id_user;
-       $user = User::find($reserveUser);
-       $userEmail = $user->email;
-       $this->sendApprovedEmail($userEmail,$eventTitle);
+        $reserveUser=$reservation->id_user;
+        $user = User::find($reserveUser);
+        $userEmail = $user->email;
+        $this->sendApprovedEmail($userEmail,$eventTitle);
 
         return redirect('/reservation');
 

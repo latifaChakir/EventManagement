@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\StripeController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ValidateEventController;
@@ -75,10 +76,9 @@ Route::get('/search', [HomeController::class, 'search']);
 Route::get('/filter', [HomeController::class, 'filter']);
 Route::get('/eventDetail/{id}', [HomeController::class, 'afficherDet']);
 Route::get('/ticket/{id}', [TicketController::class, 'generate']);
-Route::post('/addTicket', [TicketController::class, 'addTicket']);
-Route::get('/pdf/{idEvent}', [TicketController::class,'pdf'])->name('generate.pdf');
+Route::get('/pdf/{idEvent}/{idUser}', [TicketController::class,'pdf'])->name('generate.pdf');
 
 
-
-
+Route::post('/checkout/{id}', [StripeController::class , 'checkout']);
+Route::get('/success/{event}/{idUser}', [StripeController::class , 'success'])->name('success');
 

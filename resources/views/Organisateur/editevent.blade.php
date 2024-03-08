@@ -29,6 +29,10 @@
                     <input type="number" class="form-control" name="number_places" value="{{ $event->number_places }}">
                 </div>
                 <div class="form-group">
+                    <label>Price</label>
+                    <input type="number" class="form-control" name="prix" value="{{ $event->prix }}">
+                </div>
+                <div class="form-group">
                     <label>Category</label>
                     <select class="form-control" name="category_id" data-placeholder="choose a category">
                         @foreach($categories as $category)

@@ -17,49 +17,13 @@ class TicketController extends Controller
         return view('ticket',compact('event'));
     }
 
-    public function addTicket(Request $request){
-
-        $validatedData = $request->validate([
-            'id_event' => 'required',
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-        ]);
-        $event = Event::findOrFail($validatedData['id_event']);
-
-        $user = new User();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->save();
-        $reserve= new Reservation();
-        $reserve->id_user=$user->id;
-        $reserve->id_event=$validatedData['id_event'];
-
-        if ($event->type_reserved === 'automatic') {
-            $reserve->status = 'approved';
-            $reserve->save();
-            $event->number_places = $event->number_places - 1;
-            $event->save();
-            session(['userName' => $user->name]);
-            return redirect('/ticket/' . $validatedData['id_event']);
-        }
-
-        else{
-            $reserve->status = 'pending';
-            $reserve->save();
-            $event->number_places = $event->number_places - 1;
-            $event->save();
-            return redirect('/ticket/' . $validatedData['id_event'])->with('status', 'Thank you for waiting for the organizer is approval. Please check your email for notification of your request is acceptance.');
-        }
-
-    }
-
-    public function pdf($idEvent)
+    public function pdf($idEvent,$idUser)
     {
-        $userName = session('userName');
+        $user=User::findOrFail($idUser);
         $event = Event::findOrFail($idEvent);
 
         $htmlContent = View::make('pdf_content', [
-            'userName' => $userName,
+            'userName' => $user->name,
             'eventName' => $event->title
         ])->render();
 
@@ -71,9 +35,6 @@ class TicketController extends Controller
         $dompdf->loadHtml($htmlContent);
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
-
-        session()->forget('userName');
-
         $fileName = 'ticket.pdf';
         return $dompdf->stream($fileName);
     }

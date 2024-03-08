@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('description');
             $table->date('date');
             $table->string('place');
+            $table->float('prix');
             $table->integer('number_places');
             $table->string('image_path');
             $table->boolean('is_published')->default(false);

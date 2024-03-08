@@ -154,7 +154,7 @@
 						</div>
 						<!-- Price -->
 						<div class="price">
-							<h2>39.00<span>$</span></h2>
+							<h2>{{ $event->prix }}<span>dh</span></h2>
 							<p>/Person</p>
 						</div>
 					</div>
@@ -168,7 +168,7 @@
 						</ul>
 					</div>
 					<div class="pricing-footer text-center">
-						<a href="#" class="btn btn-transparent-md">Buy a ticket</a>
+						<a href="/checkout/{{ $event->id }}" class="btn btn-transparent-md">Reserve</a>
 					</div>
 				</div>
 			</div>
@@ -188,7 +188,7 @@
 					</div>
 					<div class="pricing-body">
 						<!-- Feature List -->
-                        <form id="employeeForm" method="post" action="/addTicket">
+                        <form id="employeeForm" method="post" action="/checkout/{{ $event->id }}">
                             @csrf
                             <div class="modal-body">
                                 <input type="text" hidden name="id_event" value="{{ $event->id }}">
@@ -206,11 +206,7 @@
                                 </div>
                         </form>
 
-                        @if($event->type_reserved == 'automatic')
-                        <div class="pricing-footer text-center">
-                            <a href="{{ route('generate.pdf', ['idEvent' => $event->id]) }}" class="btn btn-main-md">Generate a ticket</a>
-                        </div>
-                    @endif
+                       
 
 
 					</div>
