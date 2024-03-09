@@ -64,6 +64,8 @@ Route::middleware('jwt.check')->group(function () {
     Route::get('/profile', [AuthController::class, 'profile'])->middleware('organisateur');
     Route::get('/profileAdmin', [AuthController::class, 'profile'])->middleware('admin');
 
+    Route::get('/pdf/{idEvent}', [TicketController::class,'pdf'])->name('generate.pdf')->middleware('checkEventPayment');
+
 
 });
 
@@ -72,7 +74,7 @@ Route::get('/search', [HomeController::class, 'search']);
 Route::get('/filter', [HomeController::class, 'filter']);
 Route::get('/eventDetail/{id}', [HomeController::class, 'afficherDet']);
 Route::get('/ticket/{id}', [TicketController::class, 'generate'])->middleware('jwt.check');
-Route::get('/pdf/{idEvent}', [TicketController::class,'pdf'])->name('generate.pdf')->middleware('jwt.check');
+// Route::get('/pdf/{idEvent}', [TicketController::class,'pdf'])->name('generate.pdf')->middleware('jwt.check');
 
 Route::get('/checkout/{id}', [StripeController::class , 'checkout'])->middleware('jwt.check');
 Route::get('/success/{event}', [StripeController::class , 'success'])->name('success');

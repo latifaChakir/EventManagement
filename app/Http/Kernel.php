@@ -53,6 +53,9 @@ class Kernel extends HttpKernel
         'jwt.check' => [
             \App\Http\Middleware\CheckJwtTokenMiddleware::class
         ],
+        'checkEventPayment' =>[
+            \App\Http\Middleware\CheckEventPayment::class,
+        ]
 
     ];
 

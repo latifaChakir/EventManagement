@@ -19,6 +19,10 @@ class TicketController extends Controller
 
     public function pdf(Request $request, $idEvent)
     {
+
+        $imagePath = public_path('logo.png');
+        $type = pathinfo($imagePath, PATHINFO_EXTENSION);
+        $base64Image = 'data:image/' .$type . base64_encode(file_get_contents($imagePath));
         $decodedUser = $request->decoded_user;
         $userId = $decodedUser->id;
         $user=User::find($userId);
@@ -26,7 +30,9 @@ class TicketController extends Controller
 
         $htmlContent = View::make('pdf_content', [
             'userName' => $user->name,
-            'eventName' => $event->title
+            'eventName' => $event->title,
+            'date' => $event->date,
+            'base64ImageUrl' => $base64Image
         ])->render();
 
         // Générer le PDF

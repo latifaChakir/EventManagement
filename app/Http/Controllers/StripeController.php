@@ -76,10 +76,11 @@ class StripeController extends Controller
 
         if ($event->type == 'checkout.session.completed') {
             $session = $event->data->object;
-
             $reserve= new Reservation();
             $reserve->id_user=$session->metadata->user_id;
             $reserve->id_event=$session->metadata->event_id;
+            $reserve->is_payed=1;
+            Log::info("message");
 
             $eventid = $session->metadata->event_id;
             $userId=$session->metadata->user_id;
@@ -92,7 +93,7 @@ class StripeController extends Controller
                 $event->number_places = $event->number_places - 1;
                 $event->save();
                 return view('/success',compact('event','user'));
-                // Log::info("message");
+
 
             }else{
                 $reserve->status = 'pending';
