@@ -46,13 +46,13 @@
                            <div class="full counter_section margin_bottom_30">
                               <div class="couter_icon">
                                  <div>
-                                    <i class="fa fa-cloud-download green_color"></i>
+                                    <i class="fa fa-check-circle green_color"></i>
                                  </div>
                               </div>
                               <div class="counter_no">
                                  <div>
-                                    <p class="total_no">1,805</p>
-                                    <p class="head_couter">Collections</p>
+                                    <p class="total_no">{{ $approvedReservation }}</p>
+                                    <p class="head_couter">My Reservation Accepted</p>
                                  </div>
                               </div>
                            </div>
@@ -61,13 +61,13 @@
                            <div class="full counter_section margin_bottom_30">
                               <div class="couter_icon">
                                  <div>
-                                    <i class="fa fa-comments-o red_color"></i>
+                                    <i class="fa fa-times red_color"></i>
                                  </div>
                               </div>
                               <div class="counter_no">
                                  <div>
-                                    <p class="total_no">54</p>
-                                    <p class="head_couter">Comments</p>
+                                    <p class="total_no">{{ $refusedReservation }}</p>
+                                    <p class="head_couter">My Reservation Rejected</p>
                                  </div>
                               </div>
                            </div>
@@ -152,7 +152,7 @@
                         </div>
                      </div>
                      <!-- graph -->
-                     
+
                      <!-- end graph -->
                      <div class="row column3">
                         <!-- testimonial -->

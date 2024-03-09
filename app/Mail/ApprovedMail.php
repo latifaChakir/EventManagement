@@ -26,6 +26,7 @@ class ApprovedMail extends Mailable
     {
         return $this->subject($this->subject)
                     ->view('Organisateur.emails.approved')
-                    ->with(['body' => $this->body]);
+                    ->with(['body' => $this->body,
+                            'subject'=> $this->subject]);
     }
 }

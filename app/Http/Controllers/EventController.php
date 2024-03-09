@@ -161,10 +161,11 @@ class EventController extends Controller
 
     }
 
-    public function approved($eventId){
-        $reservation = Reservation::find($eventId);
+    public function approved($reserveID){
+        $reservation = Reservation::find($reserveID);
         $reservation->status = 'approved';
         $reservation->save();
+
         /////FIND DETAILS
         $evenid=$reservation->id_event;
         $event=Event::find($evenid);
@@ -180,8 +181,8 @@ class EventController extends Controller
 
     private function sendApprovedEmail($userEmail,$eventTitle)
     {
-        $subject = 'Reservation Approved';
-        $body = 'Your reservation In' .$eventTitle.' has been approved.';
+        $subject = 'Reservation Ticket';
+        $body = $eventTitle;
 
         Mail::to($userEmail)
             ->send(new ApprovedMail($subject, $body));
@@ -202,7 +203,19 @@ class EventController extends Controller
         $users = Reservation::join('events', 'reservations.id_event', '=', 'events.id')
                     ->where('events.id_user', $userId)
                     ->count();
-        return view('Organisateur/dashboard',compact('myevents','users'));
+        $approvedReservation = DB::table('reservations')
+            ->join('events', 'reservations.id_event', '=', 'events.id')
+            ->where('reservations.status', '=', 'approved')
+            ->where('events.id_user', '=', $userId)
+            ->count();
+
+        $refusedReservation = DB::table('reservations')
+            ->join('events', 'reservations.id_event', '=', 'events.id')
+            ->where('reservations.status', '=', 'pending')
+            ->where('events.id_user', '=', $userId)
+            ->count();
+
+        return view('Organisateur/dashboard',compact('myevents','users','approvedReservation','refusedReservation'));
     }
     }
 

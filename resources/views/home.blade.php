@@ -122,7 +122,7 @@
 				</div>
 				<ol class="breadcrumb p-0 m-0">
 				  <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-				  <li class="breadcrumb-item active">Our News</li>
+				  <li class="breadcrumb-item active">Our Events</li>
 				</ol>
 			</div>
 		</div>

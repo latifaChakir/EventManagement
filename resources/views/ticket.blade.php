@@ -192,7 +192,7 @@
                             <p>Click the button below to pay for your ticket.</p>
                         </div>
                                 <div class="pricing-footer text-center">
-                                    <a href="/checkout/{{ $event->id }}">reserve</a>
+                                    <a href="/checkout/{{ $event->id }}" class="btn btn-transparent-md">reserve</a>
                                 </div>
 
 					</div>
