@@ -195,6 +195,7 @@
                                     <a href="/checkout/{{ $event->id }}" class="btn btn-transparent-md">reserve</a>
                                 </div>
 
+
 					</div>
 
 				</div>

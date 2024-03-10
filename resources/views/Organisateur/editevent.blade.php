@@ -13,9 +13,9 @@
                     <input type="text" class="form-control" name="title" placeholder="Title" value="{{ $event->title }}">
                 </div>
                 <div class="form-group">
-                    <label>Description</label>
-                    <input type="text" class="form-control" name="description" value="{{ $event->description }}">
-                </div>
+                    <label for="description">Description</label>
+                    <textarea class="form-control" name="description">{{ $event->description }}</textarea>
+                  </div>
                 <div class="form-group">
                     <label>Adress</label>
                     <input type="text" class="form-control" name="place"value="{{ $event->place }}" >

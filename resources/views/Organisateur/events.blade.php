@@ -92,9 +92,9 @@
                                     <input type="text" class="form-control" name="title" placeholder="Title">
                                 </div>
                                 <div class="form-group">
-                                    <label>Description</label>
-                                    <input type="text" class="form-control" name="description">
-                                </div>
+                                    <label for="description">Description</label>
+                                    <textarea class="form-control" name="description" rows="4"></textarea>
+                                  </div>
                                 <div class="form-group">
                                     <label>Adress</label>
                                     <input type="text" class="form-control" name="place">

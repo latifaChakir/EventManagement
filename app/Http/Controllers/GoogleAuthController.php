@@ -7,6 +7,10 @@ use Exception;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
+
+use \Firebase\JWT\JWT;
+
 
 class GoogleAuthController extends Controller
 {
@@ -15,24 +19,41 @@ class GoogleAuthController extends Controller
     }
 
     public function callbackGoogle(){
-        $googleUser = Socialite::driver('google')->user();
+        $googleUser = Socialite::driver('google')->stateless()->user();
 
         $user = User::where('email', $googleUser->getEmail())->first();
 
         if ($user) {
             Auth::login($user);
-            return redirect()->intended('/');
+            $payload = [
+                'iss' => $_SERVER['HTTP_HOST'],
+                'iat' => time(),
+                'id' => $user->id,
+            ];
+
+            $jwt = JWT::encode($payload, $_ENV['JWT_SECRET'], $_ENV['JWT_ALGO']);
+
+            $cookie = Cookie::make('jwt_token', $jwt, 1440);
+
+            if($user->id_role == 1){
+                return redirect()->intended('/categories')->withCookie($cookie);
+            }else if($user->id_role == 2){
+                return redirect()->intended('/events')->withCookie($cookie);;
+            }else {
+                return redirect()->intended('/home')->withCookie($cookie);;
+            }
+
         } else {
             $newUser = new User();
             $newUser->name = $googleUser->getName();
             $newUser->email = $googleUser->getEmail();
 
-            $newUser->role = 'User';
+            $newUser->id_role = 3;
 
             $newUser->save();
 
             Auth::login($newUser);
-            return redirect()->intended('/');
+            return redirect()->intended('/home');
         }
     }
 

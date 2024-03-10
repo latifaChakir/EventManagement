@@ -59,8 +59,12 @@
                         </div>
                    @else
                    <p>Thank you for waiting for the organizer is approval. Please check your email for notification of your request is acceptance</p>
-                 @endif
+                   @endif
+                   <div class="pricing-footer text-center mt-5">
+                   <a href="/home" class="main_bt">Back to home</a>
+                    </div>
                </div>
+
             </div>
          </div>
       </div>

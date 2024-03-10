@@ -82,7 +82,7 @@
 })(jQuery);
 
 
-
+//SEARCH
 const search = document.getElementById('search');
 const searchResults = document.getElementById('searchResults');
 fetchSearchResults();
@@ -114,7 +114,7 @@ document.querySelectorAll('input[type="radio"][name="category"]').forEach(functi
 });
 
 
-///////////////
+///////PAGINATION////////
 var currentPage = 1;
     $(document).ready(function() {
         $('#prev-page, #next-page').click(function(e) {
@@ -130,7 +130,7 @@ var currentPage = 1;
             type: 'GET',
             success: function(data) {
                 $('#searchResults').html(data);
-                currentPage = page; 
+                currentPage = page;
             }
         });
     }

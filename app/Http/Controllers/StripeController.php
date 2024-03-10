@@ -80,7 +80,7 @@ class StripeController extends Controller
             $reserve->id_user=$session->metadata->user_id;
             $reserve->id_event=$session->metadata->event_id;
             $reserve->is_payed=1;
-            Log::info("message");
+            // Log::info("message");
 
             $eventid = $session->metadata->event_id;
             $userId=$session->metadata->user_id;
