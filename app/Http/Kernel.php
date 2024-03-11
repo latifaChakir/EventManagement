@@ -48,7 +48,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\AdminRoleMiddleware::class,
         ],
         'organisateur' => [
-            \App\Http\Middleware\OrganisateurMiddleware::class,
+            \App\Http\Middleware\OrganisateurMiddleware::class, 
         ],
         'jwt.check' => [
             \App\Http\Middleware\CheckJwtTokenMiddleware::class

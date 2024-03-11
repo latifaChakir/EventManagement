@@ -23,6 +23,7 @@ class TicketController extends Controller
         $imagePath = public_path('logo.png');
         $type = pathinfo($imagePath, PATHINFO_EXTENSION);
         $base64Image = 'data:image/' .$type . base64_encode(file_get_contents($imagePath));
+        
         $decodedUser = $request->decoded_user;
         $userId = $decodedUser->id;
         $user=User::find($userId);

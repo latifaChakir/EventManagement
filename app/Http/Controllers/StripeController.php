@@ -56,60 +56,90 @@ class StripeController extends Controller
 
     }
 
-    public function handleWebhook(Request $request)
-    {
-        Stripe::setApiKey(config('stripe.sk'));
+//     public function handleWebhook(Request $request)
+// {
+//     Log::info("START");
+//     Stripe::setApiKey(config('stripe.sk'));
 
-        $payload = $request->getContent();
-        $sig_header = $request->header('Stripe-Signature');
-        $event = null;
+//     $payload = $request->getContent();
+//     $sig_header = $request->header('Stripe-Signature');
 
-        try {
-            $event = Webhook::constructEvent(
-                $payload,
-                $sig_header,
-                config('stripe.webhook_secret')
-            );
-        } catch (\Exception $e) {
-            return response()->json(['error' => 'Webhook Error: ' . $e->getMessage()], 400);
+//     Log::info($sig_header);
+//     $event = null;
+
+//     try {
+//         $event = Webhook::constructEvent(
+//             $payload,
+//             $sig_header,
+//             config('stripe.webhook_secret')
+//         );
+
+//     } catch (\Exception $e) {
+//         Log::info('mesa');
+//         return response()->json(['error' => 'Webhook Error: ' . $e->getMessage()], 400);
+//     }
+
+//     Log::info($event);
+
+//     if ($event->type == 'checkout.session.completed') {
+//         Log::info("condition");
+//         $session = $event->data->object;
+//         $reserve= new Reservation();
+//         $reserve->id_user=$session->metadata->user_id;
+//         $reserve->id_event=$session->metadata->event_id;
+//         $reserve->is_payed=1;
+
+//         $eventid = $session->metadata->event_id;
+//         $userId=$session->metadata->user_id;
+//         $event = Event::findOrFail($eventid);
+//         $user=User::findOrFail($userId);
+
+//         if ($event->type_reserved === 'automatic') {
+//             $reserve->status = 'approved';
+//             $reserve->save();
+//             $event->number_places = $event->number_places - 1;
+//             $event->save();
+//             return view('/success',compact('event','user'));
+//         } else {
+//             $reserve->status = 'pending';
+//             $reserve->save();
+//             $event->number_places = $event->number_places - 1;
+//             $event->save();
+//             return view('/success',compact('event'));
+//         }
+//     }
+
+//     return response()->json(['status' => 'success']);
+// }
+
+public function success(Request $request, $eventId)
+{
+    $event=Event::find($eventId);
+    $decodedUser = $request->decoded_user;
+    $userId = $decodedUser->id;
+
+
+        $reserve= new Reservation();
+        $reserve->id_user=$userId;
+        $reserve->id_event=$eventId;
+        $reserve->is_payed=1;
+
+        $event = Event::findOrFail($eventId);
+        $user=User::findOrFail($userId);
+
+        if ($event->type_reserved === 'automatic') {
+            $reserve->status = 'approved';
+            $reserve->save();
+            $event->number_places = $event->number_places - 1;
+            $event->save();
+            return view('/index',compact('event','user'));
+        } else {
+            $reserve->status = 'pending';
+            $reserve->save();
+            $event->number_places = $event->number_places - 1;
+            $event->save();
+            return view('/index',compact('event'));
         }
 
-        if ($event->type == 'checkout.session.completed') {
-            $session = $event->data->object;
-            $reserve= new Reservation();
-            $reserve->id_user=$session->metadata->user_id;
-            $reserve->id_event=$session->metadata->event_id;
-            $reserve->is_payed=1;
-            // Log::info("message");
-
-            $eventid = $session->metadata->event_id;
-            $userId=$session->metadata->user_id;
-            $event = Event::findOrFail($eventid);
-            $user=User::findOrFail($userId);
-
-            if ($event->type_reserved === 'automatic') {
-                $reserve->status = 'approved';
-                $reserve->save();
-                $event->number_places = $event->number_places - 1;
-                $event->save();
-                return view('/success',compact('event','user'));
-
-
-            }else{
-                $reserve->status = 'pending';
-                $reserve->save();
-                $event->number_places = $event->number_places - 1;
-                $event->save();
-                return view('/success',compact('event'));
-            }
-
-        }
-
-        return response()->json(['status' => 'success']);
-    }
-    public function success($eventId)
-    {
-        $event=Event::find($eventId);
-        return view('index',compact('event'));
-    }
+}
 }
